@@ -12,8 +12,8 @@ export default function useViewport() {
   return {
     width,
     isMobile: width <= 480,
-    isTablet: width > 480 && width <= 1024,
-    isDesktop: width > 1024,
-    isNative: width <= 1024, // mobile + tablet = show as real app (no phone frame)
+    isTablet: width > 480 && width <= 1200,
+    isDesktop: width > 1200,
+    isNative: width <= 1200, // everything up to large desktop = native app mode
   }
 }

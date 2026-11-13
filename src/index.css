@@ -32,14 +32,14 @@
   }
 
   /* On desktop the phone frame handles its own scroll — prevent body scroll */
-  @media (min-width: 1025px) {
+  @media (min-width: 1201px) {
     body {
       overflow: hidden;
     }
   }
 
   /* On mobile/tablet — allow normal scroll */
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     body {
       overflow: auto;
     }
