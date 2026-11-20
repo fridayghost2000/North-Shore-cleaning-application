@@ -76,9 +76,9 @@ export default function PhotosModal() {
               flex: 1,
               padding: '9px 0',
               borderRadius: 10,
-              border: photoTab === 'before' ? '1.5px solid #FA2A70' : '1px solid #E2E8F0',
-              background: photoTab === 'before' ? '#FFFFFF' : '#F8FAFC',
-              color: photoTab === 'before' ? '#FA2A70' : '#64748B',
+              border: photoTab === 'before' ? '1.5px solid #0B4A8F' : '1px solid #E2E8F0',
+              background: photoTab === 'before' ? '#EEF5FC' : '#F8FAFC',
+              color: photoTab === 'before' ? '#0B4A8F' : '#64748B',
               fontWeight: photoTab === 'before' ? 700 : 500,
               fontSize: 13,
               cursor: 'pointer',
@@ -94,9 +94,9 @@ export default function PhotosModal() {
               flex: 1,
               padding: '9px 0',
               borderRadius: 10,
-              border: photoTab === 'after' ? '1.5px solid #FA2A70' : '1px solid #E2E8F0',
-              background: photoTab === 'after' ? '#FFFFFF' : '#F8FAFC',
-              color: photoTab === 'after' ? '#FA2A70' : '#64748B',
+              border: photoTab === 'after' ? '1.5px solid #0B4A8F' : '1px solid #E2E8F0',
+              background: photoTab === 'after' ? '#EEF5FC' : '#F8FAFC',
+              color: photoTab === 'after' ? '#0B4A8F' : '#64748B',
               fontWeight: photoTab === 'after' ? 700 : 500,
               fontSize: 13,
               cursor: 'pointer',
@@ -183,7 +183,7 @@ export default function PhotosModal() {
             style={{
               background: 'none',
               border: 'none',
-              color: '#FA2A70',
+              color: '#0B4A8F',
               fontSize: 13,
               fontWeight: 600,
               cursor: 'pointer',
@@ -193,20 +193,20 @@ export default function PhotosModal() {
           </button>
         </div>
 
-        {/* Big Solid Pink Action Button (Matching Image 3) */}
+        {/* Big Solid Brand Blue Action Button */}
         <button
           onClick={handleDownloadAll}
           style={{
             width: '100%',
             padding: '14px',
             borderRadius: 12,
-            background: '#FA2A70', // Cleanster hot pink
+            background: '#0B4A8F', // North Shore brand blue
             color: '#FFFFFF',
             border: 'none',
             fontSize: 14,
             fontWeight: 700,
             cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(250, 42, 112, 0.35)',
+            boxShadow: '0 4px 14px rgba(11, 74, 143, 0.35)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

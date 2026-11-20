@@ -66,14 +66,14 @@ export default function AccountPage() {
           <span style={{
             fontSize: 10,
             fontWeight: 700,
-            color: '#FA2A70',
-            background: '#FFF0F5',
+            color: '#0B4A8F',
+            background: '#EEF5FC',
             padding: '2px 8px',
             borderRadius: 6,
             marginTop: 4,
             display: 'inline-block',
           }}>
-            Cleanster VIP
+            North Shore VIP
           </span>
         </div>
       </div>
@@ -101,14 +101,14 @@ export default function AccountPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: '#FA2A70', // Cleanster pink
+            background: '#0B4A8F', // North Shore brand blue
             color: '#FFFFFF',
             textDecoration: 'none',
             padding: '12px 16px',
             borderRadius: 12,
             fontWeight: 700,
             fontSize: 13,
-            boxShadow: '0 4px 12px rgba(250, 42, 112, 0.3)',
+            boxShadow: '0 4px 12px rgba(11, 74, 143, 0.35)',
             marginBottom: 8,
           }}
         >

@@ -62,11 +62,12 @@ export default function CleansterBottomNav() {
                   width: 38,
                   height: 38,
                   borderRadius: '50%',
-                  background: '#FA2A70', // Cleanster signature pink
+                  background: '#0B4A8F', // North Shore primary blue
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  boxShadow: '0 4px 14px rgba(11, 74, 143, 0.35)',
                 }}>
                   <Plus size={22} strokeWidth={2.8} />
                 </div>
@@ -94,7 +95,7 @@ export default function CleansterBottomNav() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 3,
-              color: isSelected ? '#FA2A70' : '#94A3B8',
+              color: isSelected ? '#0B4A8F' : '#94A3B8',
               transition: 'color 0.15s ease',
               WebkitTapHighlightColor: 'transparent',
             }}

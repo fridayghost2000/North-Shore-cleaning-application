@@ -86,29 +86,29 @@ export default function NewBookingModal() {
 
         {/* Price & Specs Strip */}
         <div style={{
-          background: '#FFF0F5',
+          background: '#EEF5FC',
           borderRadius: 14,
           padding: '12px 14px',
-          border: '1px solid #FCE7F3',
+          border: '1px solid #D0E3F5',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           marginBottom: 16,
         }}>
           <div>
-            <span style={{ fontSize: 11, color: '#9D174D', fontWeight: 600, display: 'block' }}>
+            <span style={{ fontSize: 11, color: '#0B4A8F', fontWeight: 600, display: 'block' }}>
               Estimated Price
             </span>
-            <span style={{ fontSize: 20, fontWeight: 800, color: '#FA2A70' }}>
+            <span style={{ fontSize: 20, fontWeight: 800, color: '#0B4A8F' }}>
               ${selectedService.basePrice}.00
             </span>
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <span style={{ fontSize: 11, color: '#9D174D', fontWeight: 600, display: 'block' }}>
+            <span style={{ fontSize: 11, color: '#0B4A8F', fontWeight: 600, display: 'block' }}>
               Estimated Time
             </span>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#831843' }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>
               {selectedService.duration}
             </span>
           </div>
@@ -130,7 +130,7 @@ export default function NewBookingModal() {
               borderRadius: 10,
               padding: '10px 12px',
             }}>
-              <MapPin size={15} color="#FA2A70" style={{ flexShrink: 0 }} />
+              <MapPin size={15} color="#0B4A8F" style={{ flexShrink: 0 }} />
               <input
                 type="text"
                 value={address}
@@ -180,14 +180,14 @@ export default function NewBookingModal() {
               width: '100%',
               padding: '14px',
               borderRadius: 12,
-              background: '#FA2A70',
+              background: '#0B4A8F',
               color: '#FFFFFF',
               border: 'none',
               fontSize: 14,
               fontWeight: 700,
               cursor: 'pointer',
               marginTop: 8,
-              boxShadow: '0 4px 14px rgba(250, 42, 112, 0.35)',
+              boxShadow: '0 4px 14px rgba(11, 74, 143, 0.35)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

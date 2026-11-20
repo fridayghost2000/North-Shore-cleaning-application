@@ -115,7 +115,7 @@ export default function ChecklistPage() {
                       alt={cat.title}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    {/* Glowing Pink Pin */}
+                    {/* Glowing North Shore Blue Pin */}
                     <div style={{
                       position: 'absolute',
                       top: '50%',
@@ -124,9 +124,9 @@ export default function ChecklistPage() {
                       width: 14,
                       height: 14,
                       borderRadius: '50%',
-                      background: '#FA2A70', // Cleanster pink
+                      background: '#0B4A8F', // North Shore brand blue
                       border: '2px solid #FFFFFF',
-                      boxShadow: '0 0 10px rgba(250, 42, 112, 0.8)',
+                      boxShadow: '0 0 10px rgba(11, 74, 143, 0.8)',
                     }} />
                   </div>
 
@@ -180,7 +180,7 @@ export default function ChecklistPage() {
                       }}
                     >
                       {task.done ? (
-                        <CheckCircle2 size={16} color="#FA2A70" style={{ flexShrink: 0, marginTop: 1 }} />
+                        <CheckCircle2 size={16} color="#0B4A8F" style={{ flexShrink: 0, marginTop: 1 }} />
                       ) : (
                         <Circle size={16} color="#CBD5E1" style={{ flexShrink: 0, marginTop: 1 }} />
                       )}

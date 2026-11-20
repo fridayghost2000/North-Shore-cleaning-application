@@ -284,14 +284,14 @@ export default function MessagesPage() {
           <Mic size={18} />
         </button>
 
-        {/* Pink Send Button */}
+        {/* North Shore Blue Send Button */}
         <button
           type="submit"
           style={{
             width: 34,
             height: 34,
             borderRadius: '50%',
-            background: '#FA2A70', // Cleanster pink
+            background: '#0B4A8F', // North Shore brand blue
             color: '#FFFFFF',
             border: 'none',
             display: 'flex',
@@ -299,7 +299,7 @@ export default function MessagesPage() {
             justifyContent: 'center',
             cursor: 'pointer',
             flexShrink: 0,
-            boxShadow: '0 2px 8px rgba(250, 42, 112, 0.3)',
+            boxShadow: '0 2px 8px rgba(11, 74, 143, 0.35)',
           }}
         >
           <Send size={15} style={{ marginLeft: 2 }} />

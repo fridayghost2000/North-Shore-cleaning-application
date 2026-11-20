@@ -15,8 +15,8 @@ export const cleansterServices = [
     title: 'Short term rentals',
     subtitle: 'Airbnb or other rental properties',
     iconName: 'BedDouble',
-    color: '#FA2A70', // Cleanster Pink
-    bgColor: '#FFF0F5',
+    color: '#0B4A8F', // North Shore Brand Blue
+    bgColor: '#EEF5FC',
     basePrice: 135,
     duration: '2–3 hrs',
     description: 'Fast, dependable turnovers for Airbnb hosts and vacation rentals with laundry & guest restocking.',

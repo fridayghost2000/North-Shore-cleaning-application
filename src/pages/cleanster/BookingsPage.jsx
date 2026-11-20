@@ -84,7 +84,7 @@ export default function BookingsPage() {
             width: 7,
             height: 7,
             borderRadius: '50%',
-            background: '#FA2A70', // Cleanster pink dot
+            background: '#0B4A8F', // North Shore blue dot
             border: '1.5px solid #FFFFFF',
           }} />
         </div>
@@ -283,11 +283,11 @@ export default function BookingsPage() {
               position: 'relative',
               marginBottom: 8,
             }}>
-              {/* Pink Progress Line */}
+              {/* Brand Blue Progress Line */}
               <div style={{
                 width: '65%',
                 height: '100%',
-                background: '#FA2A70',
+                background: '#0B4A8F',
                 borderRadius: 2,
                 position: 'relative',
               }}>
@@ -298,14 +298,14 @@ export default function BookingsPage() {
                   width: 10,
                   height: 10,
                   borderRadius: '50%',
-                  background: '#FA2A70',
+                  background: '#0B4A8F',
                   border: '2px solid #FFFFFF',
                 }} />
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <span style={{ fontSize: 11, fontWeight: 700, color: '#FA2A70' }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#0B4A8F' }}>
                 Arrived on Site
               </span>
               <span style={{
@@ -347,7 +347,7 @@ export default function BookingsPage() {
                 </div>
               </div>
 
-              {/* Pink "Message >" Button */}
+              {/* Brand Blue "Message >" Button */}
               <button
                 onClick={() => setActiveTab('messages')}
                 style={{
@@ -356,9 +356,9 @@ export default function BookingsPage() {
                   gap: 4,
                   padding: '6px 12px',
                   borderRadius: 20,
-                  background: '#FFF0F5',
-                  border: '1px solid #FCE7F3',
-                  color: '#FA2A70',
+                  background: '#EEF5FC',
+                  border: '1px solid #D0E3F5',
+                  color: '#0B4A8F',
                   fontSize: 11,
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -369,7 +369,7 @@ export default function BookingsPage() {
               </button>
             </div>
 
-            {/* 4. Quick Action Pills (Matching Image 1: Expenses, Photos, Hours, Checklist) */}
+            {/* 4. Quick Action Pills (Expenses, Photos, Hours, Checklist) */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
@@ -381,9 +381,9 @@ export default function BookingsPage() {
                 style={{
                   padding: '7px 2px',
                   borderRadius: 12,
-                  border: '1px solid #F1F5F9',
+                  border: '1px solid #EEF2F6',
                   background: '#FFFFFF',
-                  color: '#FA2A70',
+                  color: '#0B4A8F',
                   fontSize: 10.5,
                   fontWeight: 700,
                   boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
@@ -398,9 +398,9 @@ export default function BookingsPage() {
                 style={{
                   padding: '7px 2px',
                   borderRadius: 12,
-                  border: '1px solid #F1F5F9',
+                  border: '1px solid #EEF2F6',
                   background: '#FFFFFF',
-                  color: '#FA2A70',
+                  color: '#0B4A8F',
                   fontSize: 10.5,
                   fontWeight: 700,
                   boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
@@ -415,9 +415,9 @@ export default function BookingsPage() {
                 style={{
                   padding: '7px 2px',
                   borderRadius: 12,
-                  border: '1px solid #F1F5F9',
+                  border: '1px solid #EEF2F6',
                   background: '#FFFFFF',
-                  color: '#FA2A70',
+                  color: '#0B4A8F',
                   fontSize: 10.5,
                   fontWeight: 700,
                   boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
@@ -432,9 +432,9 @@ export default function BookingsPage() {
                 style={{
                   padding: '7px 2px',
                   borderRadius: 12,
-                  border: '1px solid #F1F5F9',
+                  border: '1px solid #EEF2F6',
                   background: '#FFFFFF',
-                  color: '#FA2A70',
+                  color: '#0B4A8F',
                   fontSize: 10.5,
                   fontWeight: 700,
                   boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
@@ -482,12 +482,12 @@ export default function BookingsPage() {
             {/* Top row: Date Circle Badge + Title + Price + Status */}
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                {/* Pink Date Circle Badge */}
+                {/* Brand Blue Date Circle Badge */}
                 <div style={{
                   width: 44,
                   height: 44,
                   borderRadius: '50%',
-                  background: '#FA2A70', // Cleanster pink circle
+                  background: '#0B4A8F', // North Shore brand blue circle
                   color: '#FFFFFF',
                   display: 'flex',
                   flexDirection: 'column',
@@ -495,6 +495,7 @@ export default function BookingsPage() {
                   justifyContent: 'center',
                   flexShrink: 0,
                   lineHeight: 1.1,
+                  boxShadow: '0 2px 6px rgba(11, 74, 143, 0.25)',
                 }}>
                   <span style={{ fontSize: 13, fontWeight: 800 }}>{b.dateBadge.day}</span>
                   <span style={{ fontSize: 8.5, fontWeight: 700 }}>{b.dateBadge.month}</span>
@@ -570,9 +571,9 @@ export default function BookingsPage() {
                 <button
                   onClick={() => setIsReviewModalOpen(true)}
                   style={{
-                    background: '#FFF0F5',
-                    border: '1px solid #FCE7F3',
-                    color: '#FA2A70',
+                    background: '#EEF5FC',
+                    border: '1px solid #D0E3F5',
+                    color: '#0B4A8F',
                     padding: '4px 12px',
                     borderRadius: 14,
                     fontSize: 11,
