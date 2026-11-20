@@ -139,6 +139,8 @@ export default function AdminLayout() {
                 gap: 3,
                 background: 'none',
                 border: 'none',
+                outline: 'none',
+                WebkitTapHighlightColor: 'transparent',
                 cursor: 'pointer',
                 color: isActive ? '#4F46E5' : '#9AABBC',
                 position: 'relative',

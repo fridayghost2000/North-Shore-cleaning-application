@@ -139,6 +139,8 @@ export default function CleanerLayout() {
                 gap: 3,
                 background: 'none',
                 border: 'none',
+                outline: 'none',
+                WebkitTapHighlightColor: 'transparent',
                 cursor: 'pointer',
                 color: isActive ? '#00A99D' : '#9AABBC',
                 position: 'relative',

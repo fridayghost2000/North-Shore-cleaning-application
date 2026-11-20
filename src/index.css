@@ -7,6 +7,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button, input, select, textarea {
+    outline: none !important;
+  }
+  button:focus, button:focus-visible {
+    outline: none !important;
+    box-shadow: none;
   }
 
   html {
