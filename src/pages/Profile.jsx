@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { User, MapPin, Phone, Mail, ChevronRight, Shield, Bell, HelpCircle, Star } from 'lucide-react'
+import { User, MapPin, Phone, Mail, ChevronRight, Shield, Bell, HelpCircle, Star, ArrowLeftRight } from 'lucide-react'
+import { useIdentity } from '../context/IdentityContext'
 
 const menuItems = [
   { icon: MapPin,     label: 'Saved Addresses',    color: '#EBF5FB', ic: '#2196C9' },
@@ -10,6 +11,8 @@ const menuItems = [
 ]
 
 export default function Profile() {
+  const { resetIdentity } = useIdentity()
+
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', paddingBottom: 8 }}>
       {/* Header */}
@@ -22,12 +25,12 @@ export default function Profile() {
             <User size={26} color="#fff" />
           </div>
           <div>
-            <p style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Guest User</p>
+            <p style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Customer Account</p>
             <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)' }}>North Shore, MA</p>
           </div>
           <div style={{ marginLeft: 'auto' }}>
             <div style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 10, padding: '6px 12px' }}>
-              <span style={{ fontSize: 11, color: '#fff', fontWeight: 600 }}>Edit</span>
+              <span style={{ fontSize: 11, color: '#fff', fontWeight: 600 }}>Active</span>
             </div>
           </div>
         </div>
@@ -35,6 +38,30 @@ export default function Profile() {
 
       {/* Stats */}
       <div style={{ padding: '12px 16px' }}>
+        {/* Switch Persona Action Card */}
+        <div
+          onClick={resetIdentity}
+          style={{
+            background: '#F0F7FC',
+            borderRadius: 14,
+            padding: '12px 14px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            border: '1.5px solid #D0E7F5',
+            cursor: 'pointer',
+            marginBottom: 14,
+          }}
+        >
+          <div style={{ width: 36, height: 36, background: '#2196C9', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <ArrowLeftRight size={16} color="#fff" />
+          </div>
+          <div style={{ flex: 1 }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: '#111', margin: 0 }}>Switch Persona / Identity</p>
+            <p style={{ fontSize: 11, color: '#8a9bb0', margin: 0 }}>Switch to Cleaner or Admin view</p>
+          </div>
+          <ChevronRight size={15} color="#2196C9" />
+        </div>
         <div style={{ background: '#fff', borderRadius: 16, padding: '14px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', border: '1px solid #f0f4f8', marginBottom: 14 }}>
           {[{ v: '0', l: 'Bookings' }, { v: '0', l: 'Completed' }, { v: '0', l: 'Saved' }].map(({ v, l }, i) => (
             <div key={l} style={{ textAlign: 'center', borderRight: i < 2 ? '1px solid #f0f4f8' : 'none', padding: '0 8px' }}>

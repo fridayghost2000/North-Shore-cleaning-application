@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Bell, Star, ChevronRight, ArrowRight, Home as HomeIcon, Building2, Sparkles, Truck } from 'lucide-react'
+import { Bell, Star, ChevronRight, ArrowRight, Home as HomeIcon, Building2, Sparkles, Truck, ArrowLeftRight } from 'lucide-react'
 import { services } from '../data/services'
 import ServiceIcon from '../components/ServiceIcon'
 import { useApp } from '../context/AppContext'
+import { useIdentity } from '../context/IdentityContext'
 
 const quickCategories = [
   { id: 'residential',   label: 'Home',    Icon: HomeIcon,   iconColor: '#2196C9', iconBg: '#EBF5FB' },
@@ -26,6 +27,7 @@ function SectionHeader({ title, to }) {
 
 export default function Home() {
   const { setShowNotif } = useApp()
+  const { resetIdentity } = useIdentity()
 
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', paddingBottom: 8 }}>
@@ -40,13 +42,35 @@ export default function Home() {
             <p style={{ fontSize: 11, color: '#8a9bb0', marginTop: 2 }}>Beverly, MA · North Shore</p>
           </div>
 
-          <button
-            onClick={() => setShowNotif(true)}
-            style={{ width: 36, height: 36, borderRadius: 10, background: '#F0F7FC', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}
-          >
-            <Bell size={16} color="#2196C9" />
-            <div style={{ width: 7, height: 7, background: '#FF5A5F', borderRadius: '50%', position: 'absolute', top: 7, right: 7, border: '1.5px solid #fff' }} />
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button
+              onClick={resetIdentity}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                padding: '5px 8px',
+                borderRadius: 20,
+                background: '#F0F7FC',
+                border: '1px solid #D0E7F5',
+                fontSize: 10,
+                fontWeight: 600,
+                color: '#2196C9',
+                cursor: 'pointer',
+              }}
+            >
+              <ArrowLeftRight size={11} />
+              <span>Switch Role</span>
+            </button>
+
+            <button
+              onClick={() => setShowNotif(true)}
+              style={{ width: 36, height: 36, borderRadius: 10, background: '#F0F7FC', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}
+            >
+              <Bell size={16} color="#2196C9" />
+              <div style={{ width: 7, height: 7, background: '#FF5A5F', borderRadius: '50%', position: 'absolute', top: 7, right: 7, border: '1.5px solid #fff' }} />
+            </button>
+          </div>
         </div>
       </div>
 
