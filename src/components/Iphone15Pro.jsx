@@ -51,28 +51,6 @@ export default function Iphone15Pro({ children, style }) {
           position: 'relative',
         }}
       >
-        {/* Dynamic Island */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 10,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 112,
-            height: 32,
-            background: '#000',
-            borderRadius: 18,
-            zIndex: 30,
-            border: '2px solid #1a1a1a',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            paddingRight: 10,
-          }}
-        >
-          <div style={{ width: 9, height: 9, borderRadius: '50%', background: '#1c1c1e', border: '1.5px solid #2c2c2e' }} />
-        </div>
-
         {/* ── App screen ── */}
         <div
           style={{
@@ -84,8 +62,6 @@ export default function Iphone15Pro({ children, style }) {
             minHeight: 0,
           }}
         >
-          {/* Island spacer — keeps content below the floating island pill */}
-          <div style={{ height: 48, flexShrink: 0, background: '#F7F9FC', zIndex: 1 }} />
           {/* Actual app fills remaining height */}
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
             {children}
