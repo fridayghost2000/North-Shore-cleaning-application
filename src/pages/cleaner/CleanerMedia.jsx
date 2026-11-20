@@ -72,38 +72,62 @@ export default function CleanerMedia() {
         </button>
       </div>
 
-      {/* Segmented Controller (Customer UI style) */}
+      {/* Segmented Controller (iOS modern pill style) */}
       <div style={{
         display: 'flex',
-        background: '#EBF5FB',
+        background: '#F1F5F9',
         padding: '3px',
         borderRadius: 12,
         marginBottom: 16,
+        border: '1px solid #E2E8F0',
       }}>
         {[
-          { id: 'slider', label: 'Comparison Slider' },
-          { id: 'before', label: `Before (${beforeMedia.length})` },
-          { id: 'after', label: `After (${afterMedia.length})` },
-        ].map(t => (
-          <button
-            key={t.id}
-            onClick={() => setSubTab(t.id)}
-            style={{
-              flex: 1,
-              padding: '7px 4px',
-              borderRadius: 9,
-              border: 'none',
-              background: subTab === t.id ? '#FFFFFF' : 'transparent',
-              color: subTab === t.id ? '#00A99D' : '#6B7280',
-              fontWeight: subTab === t.id ? 700 : 500,
-              fontSize: 11,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-            }}
-          >
-            {t.label}
-          </button>
-        ))}
+          { id: 'slider', label: 'Comparison', count: null },
+          { id: 'before', label: 'Before', count: beforeMedia.length },
+          { id: 'after', label: 'After', count: afterMedia.length },
+        ].map(t => {
+          const isActive = subTab === t.id
+          return (
+            <button
+              key={t.id}
+              onClick={() => setSubTab(t.id)}
+              style={{
+                flex: 1,
+                padding: '7px 4px',
+                borderRadius: 9,
+                border: 'none',
+                outline: 'none',
+                WebkitTapHighlightColor: 'transparent',
+                background: isActive ? '#FFFFFF' : 'transparent',
+                color: isActive ? '#00A99D' : '#64748B',
+                fontWeight: isActive ? 700 : 500,
+                fontSize: 12,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 5,
+                whiteSpace: 'nowrap',
+                boxShadow: isActive ? '0 2px 6px rgba(0, 0, 0, 0.08)' : 'none',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              <span>{t.label}</span>
+              {t.count !== null && (
+                <span style={{
+                  fontSize: 10,
+                  fontWeight: 600,
+                  padding: '1px 6px',
+                  borderRadius: 10,
+                  background: isActive ? '#E0F7F6' : '#E2E8F0',
+                  color: isActive ? '#00A99D' : '#64748B',
+                }}>
+                  {t.count}
+                </span>
+              )}
+            </button>
+          )
+        })}
       </div>
 
       {/* Slider View */}

@@ -80,39 +80,62 @@ export default function OpsMediaCapture() {
         </div>
       </div>
 
-      {/* Segmented Controller (Minimalist) */}
+      {/* Segmented Controller (iOS modern pill style) */}
       <div style={{
         display: 'flex',
-        background: '#EEF2F6',
+        background: '#F1F5F9',
         padding: '3px',
-        borderRadius: 10,
+        borderRadius: 12,
         marginBottom: 16,
+        border: '1px solid #E2E8F0',
       }}>
         {[
-          { id: 'slider', label: 'Before/After Slider' },
-          { id: 'before', label: `Before (${beforeMedia.length})` },
-          { id: 'after', label: `After (${afterMedia.length})` },
-        ].map(tab => (
-          <button
-            key={tab.id}
-            onClick={() => setSubTab(tab.id)}
-            style={{
-              flex: 1,
-              padding: '7px 4px',
-              borderRadius: 8,
-              border: 'none',
-              background: subTab === tab.id ? '#FFFFFF' : 'transparent',
-              color: subTab === tab.id ? '#0F172A' : '#64748B',
-              fontWeight: subTab === tab.id ? 700 : 500,
-              fontSize: 11,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-              boxShadow: subTab === tab.id ? '0 1px 3px rgba(0,0,0,0.06)' : 'none',
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
+          { id: 'slider', label: 'Comparison', count: null },
+          { id: 'before', label: 'Before', count: beforeMedia.length },
+          { id: 'after', label: 'After', count: afterMedia.length },
+        ].map(tab => {
+          const isActive = subTab === tab.id
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setSubTab(tab.id)}
+              style={{
+                flex: 1,
+                padding: '7px 4px',
+                borderRadius: 9,
+                border: 'none',
+                outline: 'none',
+                WebkitTapHighlightColor: 'transparent',
+                background: isActive ? '#FFFFFF' : 'transparent',
+                color: isActive ? '#0F172A' : '#64748B',
+                fontWeight: isActive ? 700 : 500,
+                fontSize: 12,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 5,
+                whiteSpace: 'nowrap',
+                boxShadow: isActive ? '0 2px 6px rgba(0, 0, 0, 0.08)' : 'none',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              <span>{tab.label}</span>
+              {tab.count !== null && (
+                <span style={{
+                  fontSize: 10,
+                  fontWeight: 600,
+                  padding: '1px 6px',
+                  borderRadius: 10,
+                  background: isActive ? '#E2E8F0' : '#F1F5F9',
+                  color: isActive ? '#0F172A' : '#64748B',
+                }}>
+                  {tab.count}
+                </span>
+              )}
+            </button>
+          )
+        })}
       </div>
 
       {/* View 1: Interactive Comparison Slider */}
