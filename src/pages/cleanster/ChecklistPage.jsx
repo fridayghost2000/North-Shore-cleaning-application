@@ -7,7 +7,7 @@ import {
 
 export default function ChecklistPage() {
   const { checklists, toggleTask, setActiveTab } = useCleanster()
-  const [expandedId, setExpandedId] = useState('cl-3') // Kitchen expanded by default
+  const [expandedId, setExpandedId] = useState(null) // All collapsed by default
 
   function toggleExpand(id) {
     setExpandedId(expandedId === id ? null : id)
@@ -100,9 +100,8 @@ export default function ChecklistPage() {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  {/* Photo Thumbnail with Glowing Pink Dot Pin (Image 5) */}
+                  {/* Photo Thumbnail */}
                   <div style={{
-                    position: 'relative',
                     width: 52,
                     height: 52,
                     borderRadius: 10,
@@ -115,19 +114,6 @@ export default function ChecklistPage() {
                       alt={cat.title}
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    {/* Glowing North Shore Blue Pin */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: 14,
-                      height: 14,
-                      borderRadius: '50%',
-                      background: '#0B4A8F', // North Shore brand blue
-                      border: '2px solid #FFFFFF',
-                      boxShadow: '0 0 10px rgba(11, 74, 143, 0.8)',
-                    }} />
                   </div>
 
                   {/* Title & Subtasks Count */}
