@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCleanster } from '../../context/CleansterContext'
 import {
-  ChevronDown, Bell, Send, Star, MapPin, Clock,
+  Bell, Send, Star, MapPin, Clock,
   Calendar, CheckCircle2, ChevronRight, AlertCircle, FileText
 } from 'lucide-react'
 
@@ -33,29 +33,34 @@ export default function BookingsPage() {
       minHeight: '100%',
       boxSizing: 'border-box',
     }}>
-      {/* ── Top Header (Matching Image 1) ── */}
+      {/* ── Top Header ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 14,
+        position: 'relative',
+        minHeight: 34,
       }}>
-        {/* User avatar with dropdown */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer' }}>
+        {/* North Shore Clean Logo */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
-            alt="User"
-            style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover' }}
+            src="/logo_ (1).png"
+            alt="North Shore Clean"
+            style={{ height: 26, width: 'auto', objectFit: 'contain' }}
           />
-          <ChevronDown size={14} color="#64748B" />
         </div>
 
         {/* Screen Title */}
         <h1 style={{
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
           fontSize: 16,
           fontWeight: 700,
           color: '#0F172A',
           margin: 0,
+          pointerEvents: 'none',
         }}>
           Bookings
         </h1>
