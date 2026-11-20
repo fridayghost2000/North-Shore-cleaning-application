@@ -8,7 +8,41 @@ export function DemoOpsProvider({ children }) {
   const [role, setRole] = useState(() => localStorage.getItem('ns_ops_role') || 'cleaner')
   const [jobs, setJobs] = useState(() => {
     const saved = localStorage.getItem('ns_ops_jobs')
-    return saved ? JSON.parse(saved) : initialJobs
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        // If old sample photos are still in local cache, refresh them to matching kitchen photos
+        return parsed.map(j => {
+          if (j.id === 'job-101') {
+            return {
+              ...j,
+              beforeMedia: [
+                {
+                  id: 'bm-1',
+                  type: 'image',
+                  url: '/kitchen-before.jpg',
+                  caption: 'Kitchen Messy & Dirty (Before)',
+                  timestamp: '08:31 AM',
+                },
+              ],
+              afterMedia: [
+                {
+                  id: 'am-1',
+                  type: 'image',
+                  url: '/kitchen-after.jpg',
+                  caption: 'Kitchen Spotless & Gleaming (After)',
+                  timestamp: '11:15 AM',
+                },
+              ],
+            }
+          }
+          return j
+        })
+      } catch (err) {
+        return initialJobs
+      }
+    }
+    return initialJobs
   })
   
   // Active selected job for detail/check-in

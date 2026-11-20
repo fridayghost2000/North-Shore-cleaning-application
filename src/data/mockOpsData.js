@@ -72,24 +72,17 @@ export const initialJobs = [
       {
         id: 'bm-1',
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80',
-        caption: 'Kitchen Counter Grime',
+        url: '/kitchen-before.jpg',
+        caption: 'Kitchen Messy & Dirty (Before)',
         timestamp: '08:31 AM',
-      },
-      {
-        id: 'bm-2',
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80',
-        caption: 'Living Room Pre-Vacuum',
-        timestamp: '08:34 AM',
       },
     ],
     afterMedia: [
       {
         id: 'am-1',
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80',
-        caption: 'Kitchen Sparkling Clean',
+        url: '/kitchen-after.jpg',
+        caption: 'Kitchen Spotless & Gleaming (After)',
         timestamp: '11:15 AM',
       },
     ],

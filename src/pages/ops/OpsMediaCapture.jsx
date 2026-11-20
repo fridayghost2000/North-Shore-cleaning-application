@@ -20,8 +20,8 @@ export default function OpsMediaCapture() {
   const afterMedia = currentJob.afterMedia || []
 
   // Default comparison images if present
-  const beforeSample = beforeMedia[0]?.url || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80'
-  const afterSample = afterMedia[0]?.url || 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80'
+  const beforeSample = currentJob.beforeMedia?.[0]?.url || '/kitchen-before.jpg'
+  const afterSample = currentJob.afterMedia?.[0]?.url || '/kitchen-after.jpg'
 
   function handleFileChange(e, category) {
     const file = e.target.files?.[0]

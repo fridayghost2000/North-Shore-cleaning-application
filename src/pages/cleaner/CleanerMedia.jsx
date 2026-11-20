@@ -13,8 +13,8 @@ export default function CleanerMedia() {
   const beforeMedia = currentJob.beforeMedia || []
   const afterMedia = currentJob.afterMedia || []
 
-  const beforeImg = beforeMedia[0]?.url || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80'
-  const afterImg = afterMedia[0]?.url || 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80'
+  const beforeImg = currentJob.beforeMedia?.[0]?.url || '/kitchen-before.jpg'
+  const afterImg = currentJob.afterMedia?.[0]?.url || '/kitchen-after.jpg'
 
   function handleCapture(e, category) {
     const file = e.target.files?.[0]

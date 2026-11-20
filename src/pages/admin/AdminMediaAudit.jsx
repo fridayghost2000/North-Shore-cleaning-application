@@ -6,9 +6,9 @@ export default function AdminMediaAudit() {
   const { jobs } = useOps()
   const [sliderPos, setSliderPos] = useState(50)
 
-  // Default comparison
-  const sampleBefore = 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80'
-  const sampleAfter = 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&auto=format&fit=crop&q=80'
+  // Default matching comparison (Exact same kitchen before & after)
+  const sampleBefore = '/kitchen-before.jpg'
+  const sampleAfter = '/kitchen-after.jpg'
 
   return (
     <div style={{ padding: '14px 16px 28px', fontFamily: 'Inter, sans-serif' }}>
