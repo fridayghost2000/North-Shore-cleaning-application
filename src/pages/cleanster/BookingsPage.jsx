@@ -304,20 +304,9 @@ export default function BookingsPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <div style={{ marginBottom: 12 }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: '#0B4A8F' }}>
                 Arrived on Site
-              </span>
-              <span style={{
-                fontSize: 10,
-                color: '#64748B',
-                background: '#F1F5F9',
-                padding: '2px 8px',
-                borderRadius: 4,
-                border: '1px solid #E2E8F0',
-                fontWeight: 600,
-              }}>
-                Residential · North Shore
               </span>
             </div>
 
@@ -502,21 +491,9 @@ export default function BookingsPage() {
                 </div>
 
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>
-                      {b.dateString}
-                    </span>
-                    <span style={{
-                      fontSize: 9.5,
-                      padding: '1px 6px',
-                      borderRadius: 4,
-                      border: '1px solid #E2E8F0',
-                      color: '#64748B',
-                      background: '#F8FAFC',
-                    }}>
-                      {b.categoryBadge}
-                    </span>
-                  </div>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A', display: 'block' }}>
+                    {b.dateString}
+                  </span>
                   <span style={{ fontSize: 11, color: '#64748B', marginTop: 1, display: 'block' }}>
                     {b.serviceTitle}
                   </span>
