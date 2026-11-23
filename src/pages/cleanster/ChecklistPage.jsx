@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCleanster } from '../../context/CleansterContext'
 import {
-  ArrowLeft, Plus, MoreVertical, CheckCircle2, Circle,
+  ArrowLeft, Plus, CheckCircle2, Circle,
   ChevronDown, ChevronUp
 } from 'lucide-react'
 
@@ -136,10 +136,9 @@ export default function ChecklistPage() {
                   </div>
                 </div>
 
-                {/* Right: 3 Dots Menu (Image 5) */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: '#94A3B8' }}>
-                  {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                  <MoreVertical size={16} />
+                {/* Right: Expand / Collapse Chevron */}
+                <div style={{ display: 'flex', alignItems: 'center', color: '#94A3B8' }}>
+                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </div>
               </div>
 
