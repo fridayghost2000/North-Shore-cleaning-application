@@ -38,8 +38,9 @@
   html, body, #root {
     width: 100%;
     height: 100%;
-    /* Use dynamic viewport height on mobile to handle browser chrome */
-    min-height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    position: relative;
   }
 
   body {
@@ -47,22 +48,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #F7F9FC;
-    /* Prevent bounce scroll on iOS */
-    overscroll-behavior-y: none;
-  }
-
-  /* On desktop the phone frame handles its own scroll — prevent body scroll */
-  @media (min-width: 1201px) {
-    body {
-      overflow: hidden;
-    }
-  }
-
-  /* On mobile/tablet — allow normal scroll */
-  @media (max-width: 1200px) {
-    body {
-      overflow: auto;
-    }
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
   }
 }
 

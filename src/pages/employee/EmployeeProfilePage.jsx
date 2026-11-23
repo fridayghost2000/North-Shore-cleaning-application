@@ -9,7 +9,7 @@ export default function EmployeeProfilePage({ onLogout }) {
   const { profile } = useEmployee()
 
   return (
-    <div style={{ padding: '14px 16px 28px', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ padding: '12px 16px 12px', fontFamily: 'Inter, sans-serif', overflow: 'hidden', overscrollBehavior: 'none' }}>
       {/* ── Employee Hero Profile Card ── */}
       <div style={{
         background: '#FFFFFF',

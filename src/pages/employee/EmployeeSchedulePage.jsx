@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useEmployee } from '../../context/EmployeeContext'
-import { Clock, MapPin, CheckCircle2, ChevronRight, CalendarCheck2 } from 'lucide-react'
+import { Clock, MapPin, CheckCircle2, ChevronRight, CalendarCheck2, CalendarDays } from 'lucide-react'
+import EmployeeCalendarModal from '../../components/employee/EmployeeCalendarModal'
 
 const weekDays = [
   { dayName: 'Mon', date: '24', isToday: true },
@@ -9,14 +10,15 @@ const weekDays = [
   { dayName: 'Thu', date: '27', isToday: false },
   { dayName: 'Fri', date: '28', isToday: false },
   { dayName: 'Sat', date: '29', isToday: false },
-  { dayName: 'Sun', date: '30', isToday: false },
 ]
 
 export default function EmployeeSchedulePage() {
   const { jobs, profile, setActiveJobId, setEmployeeTab } = useEmployee()
   const [selectedDate, setSelectedDate] = useState('24')
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
 
-  const hasShifts = selectedDate === '24'
+  const isAllView = selectedDate === 'all'
+  const hasShifts = selectedDate === '24' || isAllView
 
   function handleSelectJob(jobId) {
     setActiveJobId(jobId)
@@ -33,11 +35,19 @@ export default function EmployeeSchedulePage() {
         marginBottom: 16,
       }}>
         {/* North Shore Clean Logo */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          background: '#FFFFFF',
+          padding: '4px 10px',
+          borderRadius: 12,
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
+        }}>
           <img
             src="/logo_ (1).png"
             alt="North Shore Clean"
-            style={{ height: 26, width: 'auto', objectFit: 'contain' }}
+            style={{ height: 22, width: 'auto', objectFit: 'contain', display: 'block' }}
           />
         </div>
 
@@ -54,7 +64,7 @@ export default function EmployeeSchedulePage() {
         </span>
       </div>
 
-      {/* ── Week Calendar Strip (Minimalist) ── */}
+      {/* ── Week Calendar Strip (Minimalist) with All Calendar Button ── */}
       <div style={{
         display: 'flex',
         gap: 6,
@@ -103,6 +113,34 @@ export default function EmployeeSchedulePage() {
             </button>
           )
         })}
+
+        {/* Calendar Icon Button: Opens Shadcn Calendar Modal with Appointment Dots */}
+        <button
+          onClick={() => setIsCalendarOpen(true)}
+          title="Open Calendar with booked appointments"
+          style={{
+            flex: 1,
+            border: 'none',
+            borderRadius: 10,
+            background: isAllView || isCalendarOpen ? '#0B4A8F' : 'transparent',
+            color: isAllView || isCalendarOpen ? '#FFFFFF' : '#64748B',
+            padding: '7px 0',
+            cursor: 'pointer',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 3,
+            transition: 'background 0.15s ease',
+          }}
+        >
+          <span style={{ fontSize: 10, fontWeight: 600, opacity: (isAllView || isCalendarOpen) ? 0.95 : 0.7 }}>
+            All
+          </span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 16 }}>
+            <CalendarDays size={15} strokeWidth={(isAllView || isCalendarOpen) ? 2.4 : 1.8} />
+          </div>
+        </button>
       </div>
 
       {/* ── Assigned Shifts Header ── */}
@@ -113,7 +151,7 @@ export default function EmployeeSchedulePage() {
         marginBottom: 12,
       }}>
         <h2 style={{ fontSize: 13.5, fontWeight: 600, color: '#0F172A', margin: 0 }}>
-          Assigned Shifts
+          {isAllView ? 'All Booked Schedules' : 'Assigned Shifts'}
         </h2>
         <span style={{ fontSize: 11, color: '#64748B' }}>
           Est. payout <strong style={{ color: '#0F172A', fontWeight: 600 }}>{hasShifts ? `$${profile.todayEarnings}` : '$0'}</strong>
@@ -271,6 +309,14 @@ export default function EmployeeSchedulePage() {
           </p>
         </div>
       )}
+
+      {/* ── Shadcn-Style Calendar Modal (Shows dots on appointment days) ── */}
+      <EmployeeCalendarModal
+        isOpen={isCalendarOpen}
+        onClose={() => setIsCalendarOpen(false)}
+        selectedDate={selectedDate}
+        onSelectDate={(date) => setSelectedDate(date)}
+      />
     </div>
   )
 }

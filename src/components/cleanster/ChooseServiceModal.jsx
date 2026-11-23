@@ -31,32 +31,89 @@ export default function ChooseServiceModal() {
       flexDirection: 'column',
       justifyContent: 'flex-end',
       backdropFilter: 'blur(3px)',
+      overflow: 'hidden',
     }}>
-      {/* Click outside backdrop to close */}
+      {/* ── Top Space Hero Image (Spotless modern interior as in reference) ── */}
       <div
         onClick={() => setIsServiceModalOpen(false)}
-        style={{ flex: 1, width: '100%' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '28%',
+          cursor: 'pointer',
+          overflow: 'hidden',
+          zIndex: 1,
+        }}
+      >
+        <img
+          src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800&auto=format&fit=crop&q=80"
+          onError={(e) => { e.currentTarget.src = '/kitchen-after.jpg' }}
+          alt="Pristine Clean Living Space"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 35%',
+            display: 'block',
+          }}
+        />
+        {/* Subtle dark gradient overlay at top edge */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 36,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.25), transparent)',
+          pointerEvents: 'none',
+        }} />
+      </div>
+
+      {/* Click outside backdrop */}
+      <div
+        onClick={() => setIsServiceModalOpen(false)}
+        style={{ flex: 1, width: '100%', zIndex: 1 }}
       />
 
-      {/* Bottom Sheet Card (Exactly 75% - 3/4th of screen height) */}
+      {/* Bottom Sheet Card (74% height with clean rounded top corners) */}
       <div style={{
         background: '#FFFFFF',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
-        height: '75%',
+        height: '74%',
         display: 'flex',
         flexDirection: 'column',
         boxSizing: 'border-box',
-        boxShadow: '0 -10px 30px rgba(0,0,0,0.15)',
+        boxShadow: '0 -10px 32px rgba(0,0,0,0.18)',
         animation: 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
         overflow: 'hidden',
+        position: 'relative',
+        zIndex: 2,
       }}>
+        {/* iOS Drag Handle Pill (as in reference 2nd image) */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: 8,
+          paddingBottom: 2,
+          flexShrink: 0,
+        }}>
+          <div style={{
+            width: 36,
+            height: 4,
+            borderRadius: 2,
+            background: '#CBD5E1',
+          }} />
+        </div>
+
         {/* Top Header with Close X */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '16px 20px 14px',
+          padding: '10px 18px 12px',
           borderBottom: '1px solid #F1F5F9',
           flexShrink: 0,
           position: 'relative',

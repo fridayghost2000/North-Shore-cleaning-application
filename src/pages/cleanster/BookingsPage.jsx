@@ -44,11 +44,19 @@ export default function BookingsPage() {
         minHeight: 34,
       }}>
         {/* North Shore Clean Logo */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          background: '#FFFFFF',
+          padding: '4px 10px',
+          borderRadius: 12,
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
+        }}>
           <img
             src="/logo_ (1).png"
             alt="North Shore Clean"
-            style={{ height: 26, width: 'auto', objectFit: 'contain' }}
+            style={{ height: 22, width: 'auto', objectFit: 'contain', display: 'block' }}
           />
         </div>
 

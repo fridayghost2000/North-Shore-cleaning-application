@@ -1,24 +1,24 @@
 import { useCleanster } from '../../context/CleansterContext'
-import { Calendar, Send, ClipboardList, User, Plus } from 'lucide-react'
+import { CalendarDays, MessageSquare, ClipboardCheck, UserRound, Plus } from 'lucide-react'
 
 export default function CleansterBottomNav() {
   const { activeTab, setActiveTab, setIsServiceModalOpen } = useCleanster()
 
   const tabs = [
-    { id: 'bookings',  label: 'Booking',   Icon: Calendar },
-    { id: 'messages',  label: 'Messages',  Icon: Send },
+    { id: 'bookings',  label: 'Booking',   Icon: CalendarDays },
+    { id: 'messages',  label: 'Messages',  Icon: MessageSquare },
     { id: 'book_now',  label: 'Book Now',  Icon: Plus, isAction: true },
-    { id: 'checklist', label: 'Checklist', Icon: ClipboardList },
-    { id: 'account',   label: 'Account',   Icon: User },
+    { id: 'checklist', label: 'Checklist', Icon: ClipboardCheck },
+    { id: 'account',   label: 'Account',   Icon: UserRound },
   ]
 
   return (
     <div style={{
-      height: 64,
-      background: 'rgba(255, 255, 255, 0.92)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      borderTop: '1px solid rgba(226, 232, 240, 0.8)',
+      height: 60,
+      background: 'rgba(255, 255, 255, 0.94)',
+      backdropFilter: 'blur(20px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+      borderTop: '1px solid rgba(226, 232, 240, 0.75)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-around',
@@ -26,6 +26,7 @@ export default function CleansterBottomNav() {
       zIndex: 30,
       flexShrink: 0,
       padding: '0 4px',
+      boxShadow: '0 -2px 10px rgba(15, 23, 42, 0.02)',
     }}>
       {tabs.map(tab => {
         const isSelected = activeTab === tab.id
@@ -45,36 +46,25 @@ export default function CleansterBottomNav() {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 position: 'relative',
-                top: -12,
+                top: -10,
               }}
             >
               <div style={{
-                width: 48,
-                height: 48,
+                width: 42,
+                height: 42,
                 borderRadius: '50%',
-                background: '#FFFFFF',
-                border: '1.5px solid #E2E8F0',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
+                background: '#0B4A8F',
+                color: '#FFFFFF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'transform 0.15s ease',
+                border: 'none',
+                boxShadow: 'none',
+                transition: 'transform 0.18s cubic-bezier(0.4, 0, 0.2, 1)',
               }}>
-                <div style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: '50%',
-                  background: '#0B4A8F', // North Shore primary blue
-                  color: '#FFFFFF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 4px 14px rgba(11, 74, 143, 0.35)',
-                }}>
-                  <Plus size={22} strokeWidth={2.8} />
-                </div>
+                <Plus size={22} strokeWidth={2.8} />
               </div>
-              <span style={{ fontSize: 9.5, color: '#64748B', fontWeight: 600, marginTop: 2 }}>
+              <span style={{ fontSize: 9.5, color: '#64748B', fontWeight: 600, marginTop: 3 }}>
                 Book Now
               </span>
             </div>
@@ -96,14 +86,39 @@ export default function CleansterBottomNav() {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 3,
-              color: isSelected ? '#0B4A8F' : '#94A3B8',
-              transition: 'color 0.15s ease',
+              gap: 2,
+              padding: '4px 0',
+              transition: 'all 0.18s cubic-bezier(0.4, 0, 0.2, 1)',
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <IconComponent size={20} strokeWidth={isSelected ? 2.4 : 1.8} />
-            <span style={{ fontSize: 10, fontWeight: isSelected ? 600 : 500 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '3px 12px',
+                borderRadius: 14,
+                background: isSelected ? 'rgba(11, 74, 143, 0.08)' : 'transparent',
+                transition: 'all 0.18s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: isSelected ? 'scale(1.05)' : 'scale(1)',
+              }}
+            >
+              <IconComponent
+                size={19}
+                strokeWidth={isSelected ? 2.3 : 1.7}
+                color={isSelected ? '#0B4A8F' : '#94A3B8'}
+              />
+            </div>
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: isSelected ? 600 : 500,
+                color: isSelected ? '#0B4A8F' : '#94A3B8',
+                letterSpacing: '-0.1px',
+                transition: 'color 0.15s ease',
+              }}
+            >
               {tab.label}
             </span>
           </button>

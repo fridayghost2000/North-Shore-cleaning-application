@@ -37,9 +37,10 @@ function EmployeeLayoutContent({ onLogout }) {
       <div
         style={{
           flex: 1,
-          overflowY: 'auto',
+          overflowY: employeeTab === 'profile' ? 'hidden' : 'auto',
           overflowX: 'hidden',
           minHeight: 0,
+          overscrollBehavior: 'none',
         }}
         className="scrollbar-hide"
       >

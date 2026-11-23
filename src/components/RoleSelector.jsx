@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Home, Sparkles, ChevronRight } from 'lucide-react'
+import { Home, Briefcase, ChevronRight } from 'lucide-react'
 
 export default function RoleSelector({ onSelectRole }) {
   const [hoveredId, setHoveredId] = useState(null)
@@ -18,7 +18,7 @@ export default function RoleSelector({ onSelectRole }) {
       id: 'employee',
       title: 'Employee',
       subtitle: 'View shifts, task checklists & job timers',
-      icon: Sparkles,
+      icon: Briefcase,
       iconBg: '#ECFDF5',
       iconColor: '#059669',
       borderColor: '#059669',

@@ -39,7 +39,7 @@ export default function SplashScreen({ onFinish }) {
         right: 0,
         bottom: 0,
         zIndex: 100,
-        background: 'radial-gradient(ellipse at 50% 40%, #112542 0%, #081324 55%, #030810 100%)',
+        background: 'radial-gradient(ellipse at 50% 35%, #F0F7FF 0%, #D8ECFD 50%, #B9DCFB 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -59,7 +59,7 @@ export default function SplashScreen({ onFinish }) {
           width: 260,
           height: 260,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(33, 150, 201, 0.35) 0%, rgba(0, 194, 203, 0.1) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(33, 150, 201, 0.25) 0%, rgba(11, 74, 143, 0.1) 45%, transparent 70%)',
           filter: 'blur(35px)',
           transform: step >= 1 ? 'scale(1.15)' : 'scale(0.8)',
           opacity: step >= 1 ? 0.9 : 0,
@@ -87,7 +87,7 @@ export default function SplashScreen({ onFinish }) {
             height: 64,
             borderRadius: 20,
             background: '#FFFFFF',
-            boxShadow: '0 12px 35px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 12px 30px rgba(11, 74, 143, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -159,10 +159,9 @@ export default function SplashScreen({ onFinish }) {
           style={{
             fontSize: 20,
             fontWeight: 800,
-            color: '#FFFFFF',
+            color: '#0F172A',
             letterSpacing: '-0.4px',
             margin: '0 0 4px 0',
-            textShadow: '0 2px 10px rgba(0,0,0,0.4)',
           }}
         >
           North Shore Clean
@@ -170,7 +169,7 @@ export default function SplashScreen({ onFinish }) {
         <p
           style={{
             fontSize: 12,
-            color: '#94A3B8',
+            color: '#475569',
             margin: 0,
             fontWeight: 500,
             letterSpacing: '0.2px',
@@ -188,7 +187,7 @@ export default function SplashScreen({ onFinish }) {
           width: 140,
           height: 3,
           borderRadius: 3,
-          background: 'rgba(255, 255, 255, 0.1)',
+          background: 'rgba(11, 74, 143, 0.12)',
           overflow: 'hidden',
           opacity: step >= 2 ? 1 : 0,
           transition: 'opacity 0.4s ease',
@@ -199,9 +198,9 @@ export default function SplashScreen({ onFinish }) {
             height: '100%',
             width: step >= 3 ? '100%' : '15%',
             borderRadius: 3,
-            background: 'linear-gradient(90deg, #2196C9, #00C2CB)',
+            background: 'linear-gradient(90deg, #0B4A8F, #2196C9)',
             transition: 'width 1.2s cubic-bezier(0.25, 1, 0.5, 1)',
-            boxShadow: '0 0 8px rgba(0, 194, 203, 0.6)',
+            boxShadow: '0 0 8px rgba(33, 150, 201, 0.4)',
           }}
         />
       </div>
@@ -218,7 +217,7 @@ export default function SplashScreen({ onFinish }) {
           right: 14,
           background: 'none',
           border: 'none',
-          color: 'rgba(255, 255, 255, 0.4)',
+          color: 'rgba(15, 23, 42, 0.55)',
           fontSize: 10,
           cursor: 'pointer',
           padding: '6px 10px',
