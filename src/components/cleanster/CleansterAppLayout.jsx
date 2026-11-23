@@ -9,6 +9,7 @@ import ChooseServiceModal from './ChooseServiceModal'
 import PhotosModal from './PhotosModal'
 import ReviewModal from './ReviewModal'
 import NewBookingModal from './NewBookingModal'
+import AccountModal from './AccountModal'
 
 export default function CleansterAppLayout() {
   const { activeTab, setActiveTab } = useCleanster()
@@ -87,6 +88,7 @@ export default function CleansterAppLayout() {
       <PhotosModal />
       <ReviewModal />
       <NewBookingModal />
+      <AccountModal />
     </div>
   )
 }

@@ -39,6 +39,15 @@ export function CleansterProvider({ children }) {
   // Review submitted state
   const [lastReview, setLastReview] = useState(null)
 
+  // Account modals & profile state (rendered at root viewport so zero scroll required)
+  const [accountModal, setAccountModal] = useState(null)
+  const [accountProfile, setAccountProfile] = useState({
+    name: 'David Sterling',
+    email: 'david.sterling@northshoreclean.com',
+    phone: '+1 (978) 555-0192',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
+  })
+
   function toggleTask(checklistId, taskIndex) {
     setChecklists(prev =>
       prev.map(cl => {
@@ -141,6 +150,10 @@ export function CleansterProvider({ children }) {
         createNewBooking,
         submitReview,
         lastReview,
+        accountModal,
+        setAccountModal,
+        accountProfile,
+        setAccountProfile,
       }}
     >
       {children}
