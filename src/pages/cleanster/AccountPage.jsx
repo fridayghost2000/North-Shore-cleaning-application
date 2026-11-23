@@ -12,11 +12,12 @@ export default function AccountPage() {
   const [activeModal, setActiveModal] = useState(null)
   const [toastMsg, setToastMsg] = useState(null)
 
-  // Profile data matching user reference image
+  // Dummy profile data with professional user profile picture
   const [profile, setProfile] = useState({
-    name: 'akash k',
-    email: 'friday.ghost2000@gmail.com',
-    phone: '+91 919990919453',
+    name: 'David Sterling',
+    email: 'david.sterling@northshoreclean.com',
+    phone: '+1 (978) 555-0192',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
   })
   const [editForm, setEditForm] = useState({ ...profile })
 
@@ -136,7 +137,7 @@ export default function AccountPage() {
           style={{
             background: 'none',
             border: 'none',
-            color: '#FA2A70', // Cleanster pink Edit button
+            color: '#0B4A8F', // North Shore primary brand blue
             fontSize: 14,
             fontWeight: 600,
             cursor: 'pointer',
@@ -147,10 +148,10 @@ export default function AccountPage() {
         </button>
       </div>
 
-      {/* ── Centered Profile Area (Matching Image) ── */}
+      {/* ── Centered Profile Area (Matching Image Layout with User Profile Photo) ── */}
       <div style={{
         background: '#FFFFFF',
-        padding: '28px 16px 24px',
+        padding: '24px 16px 20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -158,21 +159,39 @@ export default function AccountPage() {
         marginBottom: 14,
         borderBottom: '1px solid #F1F5F9',
       }}>
-        {/* Solid Blue Circle Avatar */}
-        <div style={{
-          width: 72,
-          height: 72,
-          borderRadius: '50%',
-          background: '#1976D2',
-          marginBottom: 14,
-        }} />
+        {/* User Profile Avatar with subtle border & shadow */}
+        <div style={{ position: 'relative', marginBottom: 12 }}>
+          <img
+            src={profile.avatar}
+            alt={profile.name}
+            style={{
+              width: 76,
+              height: 76,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2.5px solid #FFFFFF',
+              boxShadow: '0 4px 14px rgba(11, 74, 143, 0.16)',
+              display: 'block',
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            bottom: 2,
+            right: 2,
+            width: 14,
+            height: 14,
+            borderRadius: '50%',
+            background: '#10B981',
+            border: '2px solid #FFFFFF',
+          }} />
+        </div>
 
         {/* User Name */}
         <h2 style={{
-          fontSize: 16,
-          fontWeight: 600,
+          fontSize: 16.5,
+          fontWeight: 700,
           color: '#0F172A',
-          margin: '0 0 5px 0',
+          margin: '0 0 4px 0',
           letterSpacing: '-0.2px',
         }}>
           {profile.name}
