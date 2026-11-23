@@ -102,13 +102,10 @@ export default function AccountPage() {
     }}>
       {/* ── Top Navigation Bar ── */}
       <div style={{
-        padding: '14px 16px 10px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        padding: '16px 16px 12px',
       }}>
         <h1 style={{
-          fontSize: 20,
+          fontSize: 22,
           fontWeight: 800,
           color: '#0F172A',
           margin: 0,
@@ -116,30 +113,6 @@ export default function AccountPage() {
         }}>
           Account
         </h1>
-
-        {/* 24/7 Hotline Pill (Single line, perfectly proportioned) */}
-        <a
-          href={`tel:${northShoreCompany.phone}`}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: '6px 12px',
-            borderRadius: 20,
-            background: '#EEF5FC',
-            border: '1px solid #D0E3F5',
-            color: '#0B4A8F',
-            fontSize: 11.5,
-            fontWeight: 700,
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            flexShrink: 0,
-            boxShadow: '0 1px 3px rgba(11, 74, 143, 0.08)',
-          }}
-        >
-          <Phone size={12} strokeWidth={2.4} />
-          <span>24/7 Hotline</span>
-        </a>
       </div>
 
       {/* ── Professional Profile Card ── */}
