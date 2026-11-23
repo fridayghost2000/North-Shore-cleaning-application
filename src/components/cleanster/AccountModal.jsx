@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useCleanster } from '../../context/CleansterContext'
-import { X, Phone } from 'lucide-react'
+import { X, Phone, PhoneOff, AlertCircle } from 'lucide-react'
 import { northShoreCompany } from '../../data/cleansterData'
 
 export default function AccountModal() {
@@ -15,11 +15,13 @@ export default function AccountModal() {
   const [editForm, setEditForm] = useState({ ...accountProfile })
   const [problemText, setProblemText] = useState('')
   const [toastMsg, setToastMsg] = useState(null)
+  const [showCallUnavailable, setShowCallUnavailable] = useState(false)
 
   useEffect(() => {
     if (accountProfile) {
       setEditForm({ ...accountProfile })
     }
+    setShowCallUnavailable(false)
   }, [accountProfile, accountModal])
 
   if (!accountModal) return null
@@ -228,9 +230,11 @@ export default function AccountModal() {
 
         {accountModal === 'help' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <a
-              href={`tel:${northShoreCompany.phone}`}
+            <button
+              type="button"
+              onClick={() => setShowCallUnavailable(true)}
               style={{
+                width: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -238,9 +242,12 @@ export default function AccountModal() {
                 borderRadius: 12,
                 background: '#0B4A8F',
                 color: '#FFFFFF',
-                textDecoration: 'none',
+                border: 'none',
                 fontWeight: 700,
                 fontSize: 13,
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'opacity 0.15s ease',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -248,7 +255,7 @@ export default function AccountModal() {
                 <span>24/7 Hotline: {northShoreCompany.phone}</span>
               </div>
               <span>Call Now →</span>
-            </a>
+            </button>
             <p style={{ fontSize: 11, color: '#64748B', margin: 0, lineHeight: 1.4 }}>
               Office hours: Monday–Friday 7am–7pm. Emergency 24/7 on-call dispatch across Essex County, MA.
             </p>
@@ -398,6 +405,121 @@ export default function AccountModal() {
           </div>
         )}
       </div>
+
+      {/* ── Service Unavailable Alert Popup Dialog ── */}
+      {showCallUnavailable && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(15, 23, 42, 0.6)',
+          backdropFilter: 'blur(3px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 24,
+          zIndex: 70,
+          boxSizing: 'border-box',
+          animation: 'fadeIn 0.15s ease',
+        }}>
+          {/* Backdrop click to dismiss */}
+          <div
+            onClick={() => setShowCallUnavailable(false)}
+            style={{ position: 'absolute', inset: 0 }}
+          />
+
+          {/* Dialog Card */}
+          <div style={{
+            position: 'relative',
+            background: '#FFFFFF',
+            borderRadius: 22,
+            padding: '24px 20px 20px',
+            width: '100%',
+            maxWidth: 320,
+            textAlign: 'center',
+            boxShadow: '0 20px 30px rgba(0, 0, 0, 0.25)',
+            boxSizing: 'border-box',
+            animation: 'scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}>
+            <div style={{
+              width: 52,
+              height: 52,
+              borderRadius: '50%',
+              background: '#FEF3C7',
+              color: '#D97706',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 14px',
+            }}>
+              <PhoneOff size={24} strokeWidth={2.2} />
+            </div>
+
+            <h3 style={{
+              fontSize: 16.5,
+              fontWeight: 700,
+              color: '#0F172A',
+              margin: '0 0 8px 0',
+            }}>
+              Service Currently Unavailable
+            </h3>
+
+            <p style={{
+              fontSize: 12.5,
+              color: '#64748B',
+              lineHeight: 1.5,
+              margin: '0 0 20px 0',
+            }}>
+              Phone calling service is temporarily unavailable. Please connect with our team directly through in-app Messages.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowCallUnavailable(false)
+                  setAccountModal(null)
+                  setActiveTab('messages')
+                }}
+                style={{
+                  width: '100%',
+                  padding: '11px',
+                  borderRadius: 12,
+                  background: '#0B4A8F',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'opacity 0.15s ease',
+                }}
+              >
+                Chat via In-App Messages
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowCallUnavailable(false)}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  borderRadius: 12,
+                  background: '#F1F5F9',
+                  color: '#475569',
+                  border: 'none',
+                  fontSize: 12.5,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                }}
+              >
+                Okay, Understood
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

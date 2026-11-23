@@ -17,6 +17,7 @@ export default function BookingsPage() {
     setActiveTab,
     setIsPhotosModalOpen,
     setIsReviewModalOpen,
+    setAccountModal,
   } = useCleanster()
 
   const [hoursAlert, setHoursAlert] = useState(false)
@@ -434,7 +435,7 @@ export default function BookingsPage() {
               <span style={{ cursor: 'pointer' }}>Receipt</span>
               <span style={{ cursor: 'pointer' }} onClick={() => setIsReviewModalOpen(true)}>Problems</span>
               <span style={{ cursor: 'pointer' }}>Inventory</span>
-              <a href="tel:978-809-5533" style={{ textDecoration: 'none', color: '#64748B', cursor: 'pointer' }}>Help</a>
+              <span onClick={() => setAccountModal('help')} style={{ cursor: 'pointer' }}>Help</span>
             </div>
           </div>
         </div>
