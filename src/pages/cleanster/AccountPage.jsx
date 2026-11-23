@@ -17,7 +17,7 @@ export default function AccountPage() {
     setTimeout(() => setToastMsg(null), 2500)
   }
 
-  // Account Menu Items
+  // Account Menu Items organized into clean iOS Inset Groups
   const menuGroups = [
     {
       id: 'properties-group',
@@ -94,62 +94,158 @@ export default function AccountPage() {
   return (
     <div style={{
       fontFamily: 'Inter, sans-serif',
-      background: '#FFFFFF',
+      background: '#F8FAFC',
       minHeight: '100%',
       boxSizing: 'border-box',
       position: 'relative',
-      paddingBottom: 70,
+      paddingBottom: 76,
     }}>
-      {/* ── Top Header & Profile Strip ── */}
+      {/* ── Top Navigation Bar ── */}
       <div style={{
-        padding: '14px 16px 12px',
-        borderBottom: '1px solid #F1F5F9',
+        padding: '14px 16px 10px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: '#FFFFFF',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80"
-            alt="David Sterling"
-            style={{ width: 42, height: 42, borderRadius: '50%', objectFit: 'cover' }}
-          />
-          <div>
-            <h2 style={{ fontSize: 14, fontWeight: 700, color: '#0F172A', margin: 0 }}>
-              David Sterling
-            </h2>
-            <p style={{ fontSize: 11, color: '#64748B', margin: 0 }}>
-              {northShoreCompany.name}
-            </p>
-          </div>
-        </div>
+        <h1 style={{
+          fontSize: 20,
+          fontWeight: 800,
+          color: '#0F172A',
+          margin: 0,
+          letterSpacing: '-0.4px',
+        }}>
+          Account
+        </h1>
 
-        {/* 24/7 Hotline Call Pill */}
+        {/* 24/7 Hotline Pill (Single line, perfectly proportioned) */}
         <a
           href={`tel:${northShoreCompany.phone}`}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: 5,
-            padding: '6px 10px',
-            borderRadius: 16,
+            gap: 6,
+            padding: '6px 12px',
+            borderRadius: 20,
             background: '#EEF5FC',
+            border: '1px solid #D0E3F5',
             color: '#0B4A8F',
-            fontSize: 11,
+            fontSize: 11.5,
             fontWeight: 700,
             textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+            boxShadow: '0 1px 3px rgba(11, 74, 143, 0.08)',
           }}
         >
-          <Phone size={12} />
+          <Phone size={12} strokeWidth={2.4} />
           <span>24/7 Hotline</span>
         </a>
       </div>
 
-      {/* ── Exact Cleanster Account Menu List (Image Matching) ── */}
-      <div style={{ width: '100%' }}>
-        {menuGroups.map((group, groupIndex) => (
-          <div key={group.id}>
+      {/* ── Professional Profile Card ── */}
+      <div style={{ padding: '0 16px 14px' }}>
+        <div style={{
+          background: '#FFFFFF',
+          borderRadius: 16,
+          padding: '14px 16px',
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 14,
+        }}>
+          <div style={{ position: 'relative', flexShrink: 0 }}>
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+              alt="David Sterling"
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '1.5px solid #EEF2F6',
+              }}
+            />
+            <div style={{
+              position: 'absolute',
+              bottom: 1,
+              right: 1,
+              width: 11,
+              height: 11,
+              borderRadius: '50%',
+              background: '#10B981',
+              border: '2px solid #FFFFFF',
+            }} />
+          </div>
+
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+              <h2 style={{
+                fontSize: 15,
+                fontWeight: 700,
+                color: '#0F172A',
+                margin: 0,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+                David Sterling
+              </h2>
+              <span style={{
+                fontSize: 9.5,
+                fontWeight: 700,
+                color: '#0B4A8F',
+                background: '#EEF5FC',
+                border: '1px solid #D0E3F5',
+                padding: '1px 6px',
+                borderRadius: 6,
+                letterSpacing: '0.3px',
+                flexShrink: 0,
+              }}>
+                VIP
+              </span>
+            </div>
+            <p style={{
+              fontSize: 11.5,
+              color: '#64748B',
+              margin: 0,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}>
+              North Shore Cleaning Systems
+            </p>
+            <p style={{
+              fontSize: 10.5,
+              color: '#94A3B8',
+              margin: '2px 0 0 0',
+            }}>
+              Beverly, MA · Client #NS-4820
+            </p>
+          </div>
+
+          <ChevronRight size={18} color="#CBD5E1" style={{ flexShrink: 0 }} />
+        </div>
+      </div>
+
+      {/* ── Clean Inset Grouped Menu List (Apple iOS / Cleanster Style) ── */}
+      <div style={{
+        padding: '0 16px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 12,
+      }}>
+        {menuGroups.map((group) => (
+          <div
+            key={group.id}
+            style={{
+              background: '#FFFFFF',
+              borderRadius: 16,
+              border: '1px solid #E2E8F0',
+              overflow: 'hidden',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+            }}
+          >
             {group.items.map((item, itemIndex) => {
               const IconComp = item.icon
               const isLastInGroup = itemIndex === group.items.length - 1
@@ -162,61 +258,60 @@ export default function AccountPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '13px 16px',
-                    borderBottom: isLastInGroup ? 'none' : '1px solid #F8FAFC',
+                    padding: '12px 14px',
+                    borderBottom: isLastInGroup ? 'none' : '1px solid #F1F5F9',
                     cursor: 'pointer',
-                    background: item.highlight ? '#F8FAFC' : '#FFFFFF',
                     transition: 'background 0.15s ease',
                   }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = '#F8FAFC'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = '#FFFFFF'}
                 >
                   {/* Left: Rounded Square Icon + Label */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <div style={{
                       width: 36,
                       height: 36,
-                      borderRadius: 8,
-                      background: '#F1F5F9',
+                      borderRadius: 10,
+                      background: item.isLogout ? '#FEE2E2' : '#F1F5F9',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: item.badge ? '#94A3B8' : '#475569',
+                      color: item.isLogout ? '#DC2626' : (item.badge ? '#94A3B8' : '#0B4A8F'),
                       flexShrink: 0,
                     }}>
-                      <IconComp size={18} strokeWidth={1.9} />
+                      <IconComp size={18} strokeWidth={item.isLogout ? 2 : 1.9} />
                     </div>
 
                     <span style={{
-                      fontSize: 14,
-                      fontWeight: 500,
-                      color: item.isLogout ? '#DC2626' : '#1E293B',
+                      fontSize: 13.5,
+                      fontWeight: 600,
+                      color: item.isLogout ? '#DC2626' : '#0F172A',
                       letterSpacing: '-0.1px',
                     }}>
                       {item.label}
                     </span>
                   </div>
 
-                  {/* Right: Chevron or "Coming Soon" */}
+                  {/* Right: Chevron or Badge */}
                   <div>
                     {item.badge ? (
                       <span style={{
-                        fontSize: 12,
+                        fontSize: 11,
                         color: '#94A3B8',
-                        fontWeight: 400,
+                        background: '#F1F5F9',
+                        padding: '2px 8px',
+                        borderRadius: 10,
+                        fontWeight: 500,
                       }}>
                         {item.badge}
                       </span>
                     ) : item.isLogout ? null : (
-                      <ChevronRight size={17} color="#94A3B8" />
+                      <ChevronRight size={16} color="#CBD5E1" />
                     )}
                   </div>
                 </div>
               )
             })}
-
-            {/* Separator Divider between groups (as in screenshot) */}
-            {groupIndex < menuGroups.length - 1 && (
-              <div style={{ height: 1, background: '#EEF2F6', width: '100%' }} />
-            )}
           </div>
         ))}
       </div>
