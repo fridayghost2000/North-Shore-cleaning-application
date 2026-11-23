@@ -116,9 +116,12 @@ export default function NewBookingModal() {
         <form
           id="booking-form"
           onSubmit={handleSubmit}
+          className="scrollbar-hide"
           style={{
             flex: 1,
             overflowY: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
             padding: '16px 20px',
             display: 'flex',
             flexDirection: 'column',

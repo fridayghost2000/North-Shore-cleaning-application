@@ -96,17 +96,23 @@ export default function ChooseServiceModal() {
           <div style={{ width: 32 }} />
         </div>
 
-        {/* List of Services (Scrollable area inside 75% sheet) */}
-        <div style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '12px 18px 24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 6,
-        }}>
-          {cleansterServices.map(service => {
+        {/* List of Services (Fitted evenly into 75% sheet with NO scrollbar) */}
+        <div
+          className="scrollbar-hide"
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            padding: '6px 16px 14px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+          }}
+        >
+          {cleansterServices.map((service, index) => {
             const IconComponent = iconMap[service.iconName] || Home
+            const isLast = index === cleansterServices.length - 1
 
             return (
               <div
@@ -116,34 +122,36 @@ export default function ChooseServiceModal() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '12px 10px',
-                  borderRadius: 14,
+                  padding: '9px 10px',
+                  borderRadius: 12,
                   cursor: 'pointer',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: isLast ? 'none' : '1px solid #F8FAFC',
                   transition: 'background 0.12s ease',
                 }}
+                onMouseEnter={e => e.currentTarget.style.background = '#F8FAFC'}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
                 {/* Left Icon + Text */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: 12,
+                    width: 38,
+                    height: 38,
+                    borderRadius: 11,
                     background: service.bgColor,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
                   }}>
-                    <IconComponent size={20} color={service.color} />
+                    <IconComponent size={19} color={service.color} />
                   </div>
 
                   <div>
                     <h3 style={{
-                      fontSize: 14,
+                      fontSize: 13.5,
                       fontWeight: 700,
                       color: '#0F172A',
-                      margin: '0 0 2px 0',
+                      margin: '0 0 1px 0',
                     }}>
                       {service.title}
                     </h3>
@@ -151,6 +159,7 @@ export default function ChooseServiceModal() {
                       fontSize: 11,
                       color: '#64748B',
                       margin: 0,
+                      lineHeight: 1.25,
                     }}>
                       {service.subtitle}
                     </p>
@@ -158,7 +167,7 @@ export default function ChooseServiceModal() {
                 </div>
 
                 {/* Right Chevron */}
-                <ChevronRight size={18} color="#CBD5E1" />
+                <ChevronRight size={17} color="#CBD5E1" />
               </div>
             )
           })}
