@@ -51,20 +51,6 @@ export default function BookingsPage() {
           />
         </div>
 
-        {/* Screen Title */}
-        <h1 style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontSize: 16,
-          fontWeight: 700,
-          color: '#0F172A',
-          margin: 0,
-          pointerEvents: 'none',
-        }}>
-          Bookings
-        </h1>
-
         {/* Notification Bell with red dot badge */}
         <div style={{
           width: 32,
