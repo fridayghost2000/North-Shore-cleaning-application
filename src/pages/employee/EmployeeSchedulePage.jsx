@@ -210,7 +210,7 @@ export default function EmployeeSchedulePage() {
                   {job.title}
                 </h3>
                 <p style={{ fontSize: 11.5, color: '#64748B', margin: '0 0 9px 0' }}>
-                  {job.clientName} · {job.serviceType}
+                  {job.clientName}
                 </p>
 
                 {/* Address */}
@@ -220,32 +220,13 @@ export default function EmployeeSchedulePage() {
                   gap: 5,
                   fontSize: 11.5,
                   color: '#64748B',
-                  marginBottom: (job.urgentNote && isInProgress) ? 9 : 11,
+                  marginBottom: 11,
                 }}>
                   <MapPin size={12} color="#94A3B8" style={{ flexShrink: 0 }} />
                   <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {job.address}
                   </span>
                 </div>
-
-                {/* Minimal Note */}
-                {job.urgentNote && isInProgress && (
-                  <div style={{
-                    background: '#F8FAFC',
-                    borderRadius: 8,
-                    padding: '7px 9px',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 5,
-                    fontSize: 11,
-                    color: '#475569',
-                    marginBottom: 10,
-                    border: '1px solid #F1F5F9',
-                  }}>
-                    <span style={{ fontWeight: 600, color: '#0B4A8F', flexShrink: 0 }}>Note:</span>
-                    <span>{job.urgentNote}</span>
-                  </div>
-                )}
 
                 {/* Card Footer */}
                 <div style={{

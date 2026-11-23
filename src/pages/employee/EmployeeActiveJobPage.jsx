@@ -285,6 +285,26 @@ export default function EmployeeActiveJobPage() {
         <p style={{ fontSize: 11, color: '#64748B', margin: '8px 0 0 0', lineHeight: 1.35 }}>
           {currentJob.accessNotes}
         </p>
+
+        {/* Note: Section relocated from shifts card */}
+        {currentJob.urgentNote && (
+          <div style={{
+            background: '#F8FAFC',
+            borderRadius: 10,
+            padding: '8px 11px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: 6,
+            fontSize: 11.5,
+            color: '#334155',
+            marginTop: 10,
+            border: '1px solid #E2E8F0',
+            lineHeight: 1.35,
+          }}>
+            <span style={{ fontWeight: 700, color: '#0B4A8F', flexShrink: 0 }}>Note:</span>
+            <span>{currentJob.urgentNote}</span>
+          </div>
+        )}
       </div>
 
       {/* ── Interactive Task Checklist Card ── */}
