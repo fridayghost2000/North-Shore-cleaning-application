@@ -38,24 +38,27 @@ export default function ChooseServiceModal() {
         style={{ flex: 1, width: '100%' }}
       />
 
-      {/* Bottom Sheet Card (Matching Image 2) */}
+      {/* Bottom Sheet Card (Exactly 75% - 3/4th of screen height) */}
       <div style={{
         background: '#FFFFFF',
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
-        padding: '16px 18px 24px',
+        height: '75%',
+        display: 'flex',
+        flexDirection: 'column',
         boxSizing: 'border-box',
-        maxHeight: '85%',
-        overflowY: 'auto',
         boxShadow: '0 -10px 30px rgba(0,0,0,0.15)',
         animation: 'slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+        overflow: 'hidden',
       }}>
         {/* Top Header with Close X */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginBottom: 16,
+          padding: '16px 20px 14px',
+          borderBottom: '1px solid #F1F5F9',
+          flexShrink: 0,
           position: 'relative',
         }}>
           <button
@@ -93,8 +96,15 @@ export default function ChooseServiceModal() {
           <div style={{ width: 32 }} />
         </div>
 
-        {/* List of Services (Matching Image 2 exactly) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {/* List of Services (Scrollable area inside 75% sheet) */}
+        <div style={{
+          flex: 1,
+          overflowY: 'auto',
+          padding: '12px 18px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+        }}>
           {cleansterServices.map(service => {
             const IconComponent = iconMap[service.iconName] || Home
 
