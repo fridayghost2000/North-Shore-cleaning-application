@@ -16,7 +16,7 @@ export default function RoleSelector({ onSelectRole }) {
     },
     {
       id: 'employee',
-      title: 'Employee',
+      title: 'Cleaner',
       subtitle: 'View shifts, task checklists & job timers',
       icon: Briefcase,
       iconBg: '#ECFDF5',
