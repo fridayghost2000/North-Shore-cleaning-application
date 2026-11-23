@@ -40,7 +40,7 @@ export default function RoleSelector({ onSelectRole }) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        background: '#F8FAFC',
+        background: 'var(--app-ambient-bg)',
         fontFamily: 'Inter, sans-serif',
         padding: '36px 20px 24px',
         boxSizing: 'border-box',

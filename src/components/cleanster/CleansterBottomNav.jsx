@@ -15,8 +15,10 @@ export default function CleansterBottomNav() {
   return (
     <div style={{
       height: 64,
-      background: '#FFFFFF',
-      borderTop: '1px solid #F0F3F6',
+      background: 'rgba(255, 255, 255, 0.92)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      borderTop: '1px solid rgba(226, 232, 240, 0.8)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-around',

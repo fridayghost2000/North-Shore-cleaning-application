@@ -1,11 +1,11 @@
 import { useEmployee } from '../../context/EmployeeContext'
 import {
   User, Award, Star, Clock, DollarSign, ShieldCheck,
-  Phone, ArrowLeftRight, LogOut, ChevronRight, CheckCircle2
+  Phone, LogOut, ChevronRight, CheckCircle2
 } from 'lucide-react'
 import { northShoreCompany } from '../../data/cleansterData'
 
-export default function EmployeeProfilePage({ onSwitchRole }) {
+export default function EmployeeProfilePage({ onLogout }) {
   const { profile } = useEmployee()
 
   return (
@@ -28,12 +28,11 @@ export default function EmployeeProfilePage({ onSwitchRole }) {
             src={profile.avatar}
             alt={profile.name}
             style={{
-              width: 76,
-              height: 76,
+              width: 72,
+              height: 72,
               borderRadius: '50%',
               objectFit: 'cover',
-              border: '3px solid #0B4A8F',
-              boxShadow: '0 4px 14px rgba(11, 74, 143, 0.18)',
+              border: '2px solid #E2E8F0',
             }}
           />
           <div style={{

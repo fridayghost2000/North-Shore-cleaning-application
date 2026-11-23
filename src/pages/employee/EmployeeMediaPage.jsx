@@ -1,25 +1,34 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useEmployee } from '../../context/EmployeeContext'
-import { Camera, Plus, CheckCircle2, Image as ImageIcon, Sparkles } from 'lucide-react'
+import { Camera, Plus, CheckCircle2, Image as ImageIcon } from 'lucide-react'
 
 export default function EmployeeMediaPage() {
   const { currentJob, addJobPhoto } = useEmployee()
   const [activeMediaTab, setActiveMediaTab] = useState('before') // 'before' | 'after'
   const [uploadToast, setUploadToast] = useState(null)
+  const fileInputRef = useRef(null)
 
   const photos = activeMediaTab === 'before' ? currentJob.beforePhotos : currentJob.afterPhotos
 
-  function handleSimulateUpload() {
-    // High quality cleaning sample photo
-    const samplePhotos = [
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=400&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&auto=format&fit=crop&q=80',
-    ]
-    const randomPic = samplePhotos[Math.floor(Math.random() * samplePhotos.length)]
-    addJobPhoto(currentJob.id, activeMediaTab, randomPic)
-    setUploadToast(`New ${activeMediaTab === 'before' ? 'Before' : 'After'} photo logged!`)
-    setTimeout(() => setUploadToast(null), 2500)
+  function handleTriggerUpload() {
+    fileInputRef.current?.click()
+  }
+
+  function handleFileChange(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const dataUrl = event.target?.result
+      if (dataUrl) {
+        addJobPhoto(currentJob.id, activeMediaTab, dataUrl)
+        setUploadToast(`✓ Photo uploaded to ${activeMediaTab === 'before' ? 'Before' : 'After'} Clean!`)
+        setTimeout(() => setUploadToast(null), 2500)
+      }
+    }
+    reader.readAsDataURL(file)
+    e.target.value = ''
   }
 
   return (
@@ -98,6 +107,15 @@ export default function EmployeeMediaPage() {
         </div>
       )}
 
+      {/* Hidden File Input for Real Photo Upload (Camera / Media Library) */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        accept="image/*"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+
       {/* Photos Grid */}
       <div style={{
         display: 'grid',
@@ -107,7 +125,7 @@ export default function EmployeeMediaPage() {
       }}>
         {/* Upload Trigger Button */}
         <div
-          onClick={handleSimulateUpload}
+          onClick={handleTriggerUpload}
           style={{
             aspectRatio: '1',
             borderRadius: 16,
@@ -182,24 +200,6 @@ export default function EmployeeMediaPage() {
             </span>
           </div>
         ))}
-      </div>
-
-      {/* Media Guidelines Note */}
-      <div style={{
-        background: '#F8FAFC',
-        borderRadius: 14,
-        padding: '12px 14px',
-        border: '1px solid #E2E8F0',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-          <Sparkles size={14} color="#0B4A8F" />
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#0F172A' }}>
-            North Shore Media Standards
-          </span>
-        </div>
-        <p style={{ fontSize: 11, color: '#64748B', margin: 0, lineHeight: 1.4 }}>
-          Take clear, well-lit photos of kitchen sinks, bathroom showers, and polished conference surfaces. Uploaded photos are verified by dispatch and forwarded to the property manager.
-        </p>
       </div>
     </div>
   )

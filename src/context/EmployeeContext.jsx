@@ -10,8 +10,8 @@ export function EmployeeProvider({ children }) {
   const [activeJobId, setActiveJobId] = useState('job-104')
 
   // Live timer for active job
-  const [timerSeconds, setTimerSeconds] = useState(4825) // ~1h 20m elapsed
-  const [isTimerRunning, setIsTimerRunning] = useState(true)
+  const [timerSeconds, setTimerSeconds] = useState(0)
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
 
   useEffect(() => {
     let interval = null
@@ -82,6 +82,7 @@ export function EmployeeProvider({ children }) {
         setActiveJobId,
         currentJob,
         timerSeconds,
+        setTimerSeconds,
         isTimerRunning,
         setIsTimerRunning,
         formatTimer,

@@ -30,7 +30,7 @@ export default function BookingsPage() {
     <div style={{
       padding: '12px 16px 24px',
       fontFamily: 'Inter, sans-serif',
-      background: '#F8FAFC',
+      background: 'transparent',
       minHeight: '100%',
       boxSizing: 'border-box',
     }}>

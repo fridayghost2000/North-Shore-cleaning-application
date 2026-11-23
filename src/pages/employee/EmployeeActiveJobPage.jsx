@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { useEmployee } from '../../context/EmployeeContext'
 import {
   Clock, MapPin, Key, CheckCircle2, Circle, Camera,
-  Play, Pause, Check, ShieldCheck, Navigation, AlertCircle
+  Play, Pause, Check, ShieldCheck, Navigation, AlertCircle, LogIn, LogOut
 } from 'lucide-react'
 
 export default function EmployeeActiveJobPage() {
   const {
     currentJob,
     timerSeconds,
+    setTimerSeconds,
     isTimerRunning,
     setIsTimerRunning,
     formatTimer,
@@ -19,6 +20,7 @@ export default function EmployeeActiveJobPage() {
 
   const [copiedKey, setCopiedKey] = useState(false)
   const [completeAlert, setCompleteAlert] = useState(false)
+  const [checkInAlert, setCheckInAlert] = useState(false)
 
   if (!currentJob) return null
 
@@ -30,6 +32,14 @@ export default function EmployeeActiveJobPage() {
     navigator.clipboard?.writeText(currentJob.accessCode)
     setCopiedKey(true)
     setTimeout(() => setCopiedKey(false), 2000)
+  }
+
+  function handleCheckIn() {
+    setTimerSeconds(0)
+    setIsTimerRunning(true)
+    updateJobStatus(currentJob.id, 'In Progress')
+    setCheckInAlert(true)
+    setTimeout(() => setCheckInAlert(false), 2500)
   }
 
   function handleCompleteJob() {
@@ -44,11 +54,11 @@ export default function EmployeeActiveJobPage() {
       {/* ── Active Timer & Job Header Card ── */}
       <div style={{
         background: '#FFFFFF',
-        borderRadius: 20,
-        border: '1.5px solid #0B4A8F',
+        borderRadius: 16,
+        border: '1px solid #E2E8F0',
         padding: '16px',
         marginBottom: 14,
-        boxShadow: '0 6px 20px rgba(11, 74, 143, 0.08)',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
       }}>
         {/* Top Badges */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
@@ -77,7 +87,7 @@ export default function EmployeeActiveJobPage() {
           </div>
         </div>
 
-        {/* Live Timer Display */}
+        {/* Live Timer Display with inside Pause/Resume control */}
         <div style={{
           textAlign: 'center',
           background: '#F8FAFC',
@@ -89,32 +99,58 @@ export default function EmployeeActiveJobPage() {
           <span style={{ fontSize: 11, color: '#64748B', fontWeight: 600, display: 'block', marginBottom: 2 }}>
             ELAPSED ON-SITE TIME
           </span>
-          <span style={{
-            fontSize: 32,
-            fontWeight: 800,
-            color: '#0F172A',
-            letterSpacing: '1px',
-            fontVariantNumeric: 'tabular-nums',
-            display: 'block',
-          }}>
-            {formatTimer(timerSeconds)}
-          </span>
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+            <span style={{
+              fontSize: 32,
+              fontWeight: 800,
+              color: '#0F172A',
+              letterSpacing: '1px',
+              fontVariantNumeric: 'tabular-nums',
+            }}>
+              {formatTimer(timerSeconds)}
+            </span>
+
+            {/* Small Pause / Play Button inside Timer Section */}
+            <button
+              type="button"
+              onClick={() => setIsTimerRunning(!isTimerRunning)}
+              title={isTimerRunning ? 'Pause Timer' : 'Resume Timer'}
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                background: isTimerRunning ? '#F1F5F9' : '#0B4A8F',
+                color: isTimerRunning ? '#475569' : '#FFFFFF',
+                border: isTimerRunning ? '1px solid #CBD5E1' : 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              {isTimerRunning ? <Pause size={12} /> : <Play size={12} style={{ marginLeft: 1 }} />}
+            </button>
+          </div>
+
           <span style={{ fontSize: 11, color: '#94A3B8' }}>
             Scheduled Window: {currentJob.startTime} – {currentJob.endTime}
           </span>
         </div>
 
-        {/* Timer Control Buttons */}
+        {/* Action Buttons: Check In & Checkout */}
         <div style={{ display: 'flex', gap: 10 }}>
+          {/* Check In Button (starts timer from 0) */}
           <button
-            onClick={() => setIsTimerRunning(!isTimerRunning)}
+            onClick={handleCheckIn}
             style={{
               flex: 1,
-              padding: '10px',
+              padding: '11px 10px',
               borderRadius: 12,
-              background: isTimerRunning ? '#FEF3C7' : '#EFF6FF',
-              color: isTimerRunning ? '#92400E' : '#0B4A8F',
-              border: isTimerRunning ? '1px solid #FDE68A' : '1px solid #BFDBFE',
+              background: '#EFF6FF',
+              color: '#0B4A8F',
+              border: '1px solid #BFDBFE',
               fontWeight: 700,
               fontSize: 12.5,
               cursor: 'pointer',
@@ -124,15 +160,16 @@ export default function EmployeeActiveJobPage() {
               gap: 6,
             }}
           >
-            {isTimerRunning ? <Pause size={14} /> : <Play size={14} />}
-            <span>{isTimerRunning ? 'Pause Shift' : 'Resume Shift'}</span>
+            <LogIn size={15} />
+            <span>Check In</span>
           </button>
 
+          {/* Checkout Button */}
           <button
             onClick={handleCompleteJob}
             style={{
               flex: 1.2,
-              padding: '10px',
+              padding: '11px 10px',
               borderRadius: 12,
               background: '#0B4A8F',
               color: '#FFFFFF',
@@ -144,16 +181,33 @@ export default function EmployeeActiveJobPage() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: 6,
-              boxShadow: '0 3px 10px rgba(11, 74, 143, 0.25)',
+              boxShadow: '0 3px 10px rgba(11, 74, 143, 0.22)',
             }}
           >
-            <CheckCircle2 size={15} />
-            <span>Complete Job</span>
+            <LogOut size={15} />
+            <span>Checkout</span>
           </button>
         </div>
       </div>
 
-      {/* Completion Toast Alert */}
+      {/* Check In Toast Alert */}
+      {checkInAlert && (
+        <div style={{
+          background: '#0B4A8F',
+          color: '#FFFFFF',
+          padding: '10px 16px',
+          borderRadius: 12,
+          fontSize: 12.5,
+          fontWeight: 600,
+          textAlign: 'center',
+          marginBottom: 14,
+          animation: 'fadeIn 0.2s ease',
+        }}>
+          ✓ Checked in successfully! Timer started from 00:00.
+        </div>
+      )}
+
+      {/* Checkout Toast Alert */}
       {completeAlert && (
         <div style={{
           background: '#059669',
@@ -166,7 +220,7 @@ export default function EmployeeActiveJobPage() {
           marginBottom: 14,
           animation: 'fadeIn 0.2s ease',
         }}>
-          ✓ Shift marked as Completed & logged to dispatch!
+          ✓ Shift checked out & completed! Logged to dispatch.
         </div>
       )}
 
@@ -314,9 +368,8 @@ export default function EmployeeActiveJobPage() {
               <span style={{
                 flex: 1,
                 fontSize: 12,
-                color: item.done ? '#94A3B8' : '#0F172A',
-                textDecoration: item.done ? 'line-through' : 'none',
-                fontWeight: item.done ? 400 : 500,
+                color: '#0F172A',
+                fontWeight: 500,
               }}>
                 {item.task}
               </span>

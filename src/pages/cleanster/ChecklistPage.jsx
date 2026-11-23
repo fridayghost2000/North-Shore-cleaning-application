@@ -17,7 +17,7 @@ export default function ChecklistPage() {
     <div style={{
       padding: '12px 16px 28px',
       fontFamily: 'Inter, sans-serif',
-      background: '#F8FAFC',
+      background: 'transparent',
       minHeight: '100%',
       boxSizing: 'border-box',
     }}>
@@ -171,8 +171,7 @@ export default function ChecklistPage() {
                       )}
                       <span style={{
                         fontSize: 12,
-                        color: task.done ? '#94A3B8' : '#334155',
-                        textDecoration: task.done ? 'line-through' : 'none',
+                        color: '#334155',
                         lineHeight: 1.35,
                       }}>
                         {task.text}

@@ -17,7 +17,7 @@ export default function PhoneShell({ children }) {
         height: '100dvh',   // dynamic viewport height (handles mobile browser chrome)
         display: 'flex',
         flexDirection: 'column',
-        background: '#F7F9FC',
+        background: 'var(--app-ambient-bg)',
         overflow: 'hidden',
       }}>
         {children}
@@ -25,7 +25,7 @@ export default function PhoneShell({ children }) {
     )
   }
 
-  /* ── Desktop mode: phone mockup on dark background ── */
+  /* ── Desktop mode: phone mockup on light background ── */
   return (
     <div style={{
       minHeight: '100vh',
@@ -33,18 +33,18 @@ export default function PhoneShell({ children }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'radial-gradient(ellipse at 55% 35%, #0d1b35 0%, #050c1c 55%, #000000 100%)',
+      background: 'radial-gradient(ellipse at 50% 30%, #F1F5F9 0%, #E2E8F0 55%, #CBD5E1 100%)',
       padding: '24px 16px',
       boxSizing: 'border-box',
       overflow: 'hidden',
     }}>
-      {/* Background glow */}
+      {/* Soft ambient light glow behind the frame */}
       <div style={{
         position: 'fixed', top: '50%', left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 500, height: 600, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(33,150,201,0.18) 0%, transparent 70%)',
-        filter: 'blur(60px)', pointerEvents: 'none', zIndex: 0,
+        width: 540, height: 700, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(11,74,143,0.12) 0%, rgba(33,150,201,0.06) 50%, transparent 70%)',
+        filter: 'blur(50px)', pointerEvents: 'none', zIndex: 0,
       }} />
 
       <Iphone15Pro style={{ width: 360, height: 760, flexShrink: 0, position: 'relative', zIndex: 1 }}>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useEmployee } from '../../context/EmployeeContext'
-import { Clock, MapPin, CheckCircle2, ChevronRight, Navigation, Sparkles, AlertCircle } from 'lucide-react'
+import { Clock, MapPin, CheckCircle2, ChevronRight, CalendarCheck2 } from 'lucide-react'
 
 const weekDays = [
   { dayName: 'Mon', date: '24', isToday: true },
@@ -16,65 +16,53 @@ export default function EmployeeSchedulePage() {
   const { jobs, profile, setActiveJobId, setEmployeeTab } = useEmployee()
   const [selectedDate, setSelectedDate] = useState('24')
 
+  const hasShifts = selectedDate === '24'
+
   function handleSelectJob(jobId) {
     setActiveJobId(jobId)
     setEmployeeTab('job')
   }
 
   return (
-    <div style={{ padding: '14px 16px 24px', fontFamily: 'Inter, sans-serif' }}>
-      {/* Employee Top Header Bar */}
+    <div style={{ padding: '16px 16px 28px', fontFamily: 'Inter, sans-serif' }}>
+      {/* ── Employee Top Header Bar ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 16,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        {/* North Shore Clean Logo */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
-            src={profile.avatar}
-            alt={profile.name}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              objectFit: 'cover',
-              border: '2px solid #0B4A8F',
-            }}
+            src="/logo_ (1).png"
+            alt="North Shore Clean"
+            style={{ height: 26, width: 'auto', objectFit: 'contain' }}
           />
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <h1 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', margin: 0 }}>
-                {profile.name}
-              </h1>
-              <span style={{
-                fontSize: 9.5,
-                fontWeight: 700,
-                color: '#059669',
-                background: '#ECFDF5',
-                padding: '1px 6px',
-                borderRadius: 8,
-              }}>
-                On Shift
-              </span>
-            </div>
-            <p style={{ fontSize: 11, color: '#64748B', margin: '2px 0 0 0' }}>
-              {profile.role}
-            </p>
-          </div>
         </div>
+
+        {/* Shift Number */}
+        <span style={{
+          fontSize: 11.5,
+          fontWeight: 600,
+          color: '#0B4A8F',
+          background: 'rgba(11, 74, 143, 0.08)',
+          padding: '4px 10px',
+          borderRadius: 12,
+        }}>
+          {hasShifts ? `${jobs.length} Shifts` : '0 Shifts'}
+        </span>
       </div>
 
-      {/* Week Calendar Strip */}
+      {/* ── Week Calendar Strip (Minimalist) ── */}
       <div style={{
         display: 'flex',
         gap: 6,
-        marginBottom: 16,
+        marginBottom: 18,
         background: '#FFFFFF',
-        padding: '8px',
-        borderRadius: 16,
-        border: '1px solid #E2E8F0',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+        padding: '7px 6px',
+        borderRadius: 14,
+        border: '1px solid #F1F5F9',
       }}>
         {weekDays.map(item => {
           const isSelected = selectedDate === item.date
@@ -87,28 +75,28 @@ export default function EmployeeSchedulePage() {
                 border: 'none',
                 borderRadius: 10,
                 background: isSelected ? '#0B4A8F' : 'transparent',
-                color: isSelected ? '#FFFFFF' : '#475569',
-                padding: '8px 2px',
+                color: isSelected ? '#FFFFFF' : '#64748B',
+                padding: '7px 0',
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: 2,
-                transition: 'all 0.12s ease',
+                transition: 'background 0.15s ease',
               }}
             >
               <span style={{ fontSize: 10, fontWeight: 500, opacity: isSelected ? 0.9 : 0.7 }}>
                 {item.dayName}
               </span>
-              <span style={{ fontSize: 13, fontWeight: 700 }}>
+              <span style={{ fontSize: 13, fontWeight: isSelected ? 700 : 600 }}>
                 {item.date}
               </span>
-              {item.isToday && (
+              {item.isToday && !isSelected && (
                 <span style={{
-                  width: 4,
-                  height: 4,
+                  width: 3.5,
+                  height: 3.5,
                   borderRadius: '50%',
-                  background: isSelected ? '#FFFFFF' : '#0B4A8F',
+                  background: '#0B4A8F',
                   marginTop: 1,
                 }} />
               )}
@@ -117,152 +105,172 @@ export default function EmployeeSchedulePage() {
         })}
       </div>
 
-      {/* Today's Shifts Header & Metrics */}
+      {/* ── Assigned Shifts Header ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 12,
       }}>
-        <div>
-          <h2 style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', margin: 0 }}>
-            Today's Assigned Jobs
-          </h2>
-          <span style={{ fontSize: 11, color: '#64748B' }}>
-            3 shifts scheduled · Est. 7.5 hrs
-          </span>
-        </div>
-
-        <span style={{
-          fontSize: 11.5,
-          fontWeight: 700,
-          color: '#059669',
-          background: '#DCFCE7',
-          padding: '3px 8px',
-          borderRadius: 10,
-        }}>
-          Est. ${profile.todayEarnings}
+        <h2 style={{ fontSize: 13.5, fontWeight: 600, color: '#0F172A', margin: 0 }}>
+          Assigned Shifts
+        </h2>
+        <span style={{ fontSize: 11, color: '#64748B' }}>
+          Est. payout <strong style={{ color: '#0F172A', fontWeight: 600 }}>{hasShifts ? `$${profile.todayEarnings}` : '$0'}</strong>
         </span>
       </div>
 
-      {/* Job Cards List */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {jobs.map(job => {
-          const isInProgress = job.status === 'In Progress'
-          const isCompleted = job.status === 'Completed'
-          const completedCount = job.checklist.filter(c => c.done).length
+      {/* ── Minimalist Job Cards List or Empty State ── */}
+      {hasShifts ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {jobs.map(job => {
+            const isInProgress = job.status === 'In Progress'
+            const isCompleted = job.status === 'Completed'
+            const completedCount = job.checklist.filter(c => c.done).length
 
-          return (
-            <div
-              key={job.id}
-              onClick={() => handleSelectJob(job.id)}
-              style={{
-                background: '#FFFFFF',
-                borderRadius: 18,
-                border: isInProgress ? '2px solid #0B4A8F' : '1px solid #E2E8F0',
-                padding: '16px',
-                cursor: 'pointer',
-                boxShadow: isInProgress
-                  ? '0 6px 18px rgba(11, 74, 143, 0.12)'
-                  : '0 2px 8px rgba(0,0,0,0.02)',
-                transition: 'all 0.15s ease',
-              }}
-            >
-              {/* Card Top: Status & Time */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-                <span style={{
-                  fontSize: 10.5,
-                  fontWeight: 700,
-                  padding: '3px 8px',
-                  borderRadius: 8,
-                  background: isInProgress ? '#EFF6FF' : isCompleted ? '#F1F5F9' : '#F8FAFC',
-                  color: isInProgress ? '#0B4A8F' : isCompleted ? '#475569' : '#0284C7',
-                  border: isInProgress ? '1px solid #BFDBFE' : '1px solid #E2E8F0',
+            return (
+              <div
+                key={job.id}
+                onClick={() => handleSelectJob(job.id)}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: 14,
+                  border: '1px solid #F1F5F9',
+                  borderLeft: isInProgress ? '3px solid #0B4A8F' : '1px solid #F1F5F9',
+                  padding: '14px 15px',
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+                  transition: 'border 0.15s ease',
+                }}
+              >
+                {/* Card Top: Status & Time */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: '50%',
+                      background: isInProgress ? '#10B981' : isCompleted ? '#64748B' : '#94A3B8',
+                    }} />
+                    <span style={{
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: isInProgress ? '#0F172A' : '#64748B',
+                    }}>
+                      {job.status}
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11.5, color: '#64748B', fontWeight: 500 }}>
+                    <Clock size={12} color="#94A3B8" />
+                    <span>{job.startTime} – {job.endTime}</span>
+                  </div>
+                </div>
+
+                {/* Title & Client */}
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#0F172A', margin: '0 0 2px 0' }}>
+                  {job.title}
+                </h3>
+                <p style={{ fontSize: 11.5, color: '#64748B', margin: '0 0 9px 0' }}>
+                  {job.clientName} · {job.serviceType}
+                </p>
+
+                {/* Address */}
+                <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: 5,
-                }}>
-                  {isInProgress && (
-                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
-                  )}
-                  {isCompleted && <CheckCircle2 size={12} />}
-                  {job.status}
-                </span>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#0F172A' }}>
-                  <Clock size={13} color="#64748B" />
-                  <span>{job.startTime} – {job.endTime}</span>
-                </div>
-              </div>
-
-              {/* Title & Client */}
-              <h3 style={{ fontSize: 14.5, fontWeight: 700, color: '#0F172A', margin: '0 0 2px 0' }}>
-                {job.title}
-              </h3>
-              <p style={{ fontSize: 12, color: '#64748B', margin: '0 0 10px 0' }}>
-                {job.clientName} · <span style={{ color: '#0B4A8F', fontWeight: 600 }}>{job.serviceType}</span>
-              </p>
-
-              {/* Address */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 11.5,
-                color: '#334155',
-                marginBottom: 12,
-              }}>
-                <MapPin size={13} color="#0B4A8F" style={{ flexShrink: 0 }} />
-                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {job.address}
-                </span>
-              </div>
-
-              {/* Urgent Note Badge if exists */}
-              {job.urgentNote && isInProgress && (
-                <div style={{
-                  background: '#FEF3C7',
-                  borderRadius: 10,
-                  padding: '8px 10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  fontSize: 11,
-                  color: '#92400E',
-                  marginBottom: 12,
-                }}>
-                  <AlertCircle size={14} color="#D97706" style={{ flexShrink: 0 }} />
-                  <span>{job.urgentNote}</span>
-                </div>
-              )}
-
-              {/* Card Footer: Checklist Progress & CTA */}
-              <div style={{
-                borderTop: '1px solid #F1F5F9',
-                paddingTop: 10,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-                <span style={{ fontSize: 11, color: '#64748B' }}>
-                  Checklist: <strong style={{ color: '#0F172A' }}>{completedCount}/{job.checklist.length} done</strong>
-                </span>
-
-                <span style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 2,
                   fontSize: 11.5,
-                  fontWeight: 700,
-                  color: isInProgress ? '#0B4A8F' : '#64748B',
+                  color: '#64748B',
+                  marginBottom: (job.urgentNote && isInProgress) ? 9 : 11,
                 }}>
-                  {isInProgress ? 'Resume Job' : 'Open Details'} <ChevronRight size={14} />
-                </span>
+                  <MapPin size={12} color="#94A3B8" style={{ flexShrink: 0 }} />
+                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {job.address}
+                  </span>
+                </div>
+
+                {/* Minimal Note */}
+                {job.urgentNote && isInProgress && (
+                  <div style={{
+                    background: '#F8FAFC',
+                    borderRadius: 8,
+                    padding: '7px 9px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 5,
+                    fontSize: 11,
+                    color: '#475569',
+                    marginBottom: 10,
+                    border: '1px solid #F1F5F9',
+                  }}>
+                    <span style={{ fontWeight: 600, color: '#0B4A8F', flexShrink: 0 }}>Note:</span>
+                    <span>{job.urgentNote}</span>
+                  </div>
+                )}
+
+                {/* Card Footer */}
+                <div style={{
+                  borderTop: '1px solid #F8FAFC',
+                  paddingTop: 9,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}>
+                  <span style={{ fontSize: 11, color: '#94A3B8' }}>
+                    Checklist {completedCount}/{job.checklist.length}
+                  </span>
+
+                  <span style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2,
+                    fontSize: 11.5,
+                    fontWeight: 600,
+                    color: isInProgress ? '#0B4A8F' : '#64748B',
+                  }}>
+                    {isInProgress ? 'Resume Job' : 'Details'} <ChevronRight size={13} />
+                  </span>
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
+      ) : (
+        <div style={{
+          background: '#FFFFFF',
+          borderRadius: 16,
+          padding: '38px 20px',
+          textAlign: 'center',
+          border: '1px solid #F1F5F9',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 6,
+        }}>
+          <div style={{
+            width: 44,
+            height: 44,
+            borderRadius: '50%',
+            background: '#F1F5F9',
+            color: '#0B4A8F',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 10,
+          }}>
+            <CalendarCheck2 size={22} />
+          </div>
+          <h3 style={{ fontSize: 14, fontWeight: 600, color: '#0F172A', margin: '0 0 4px 0' }}>
+            No shift for this day
+          </h3>
+          <p style={{ fontSize: 11.5, color: '#64748B', margin: 0 }}>
+            You have no assigned shifts on this date.
+          </p>
+        </div>
+      )}
     </div>
   )
 }

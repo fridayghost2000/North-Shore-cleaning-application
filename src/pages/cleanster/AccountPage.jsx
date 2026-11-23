@@ -92,7 +92,7 @@ export default function AccountPage() {
   return (
     <div style={{
       fontFamily: 'Inter, sans-serif',
-      background: '#F8FAFC',
+      background: 'transparent',
       minHeight: '100%',
       boxSizing: 'border-box',
       position: 'relative',

@@ -286,7 +286,6 @@ export default function AccountModal() {
               <button
                 onClick={() => {
                   handleClose()
-                  localStorage.removeItem('north_shore_role')
                   window.location.reload()
                 }}
                 style={{

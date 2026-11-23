@@ -28,7 +28,7 @@ function EmployeeLayoutContent({ onLogout }) {
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      background: '#F8FAFC',
+      background: 'var(--app-ambient-bg)',
       overflow: 'hidden',
       position: 'relative',
       fontFamily: 'Inter, sans-serif',

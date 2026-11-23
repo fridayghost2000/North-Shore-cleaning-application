@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --app-ambient-bg: radial-gradient(circle at 92% 16%, rgba(33, 150, 201, 0.22) 0%, transparent 48%),
+                    radial-gradient(circle at 86% 64%, rgba(11, 74, 143, 0.15) 0%, transparent 54%),
+                    radial-gradient(circle at 14% 84%, rgba(56, 189, 248, 0.16) 0%, transparent 46%),
+                    linear-gradient(168deg, #F8FAFC 0%, #EFF6FC 40%, #E2EEF9 100%);
+}
+
+.ambient-blue-bg {
+  background: var(--app-ambient-bg) !important;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;

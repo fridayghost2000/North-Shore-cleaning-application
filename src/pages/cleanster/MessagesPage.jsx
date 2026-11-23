@@ -21,7 +21,7 @@ export default function MessagesPage() {
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      background: '#F8FAFC',
+      background: 'transparent',
       fontFamily: 'Inter, sans-serif',
       boxSizing: 'border-box',
     }}>
@@ -260,7 +260,7 @@ export default function MessagesPage() {
           style={{
             flex: 1,
             border: 'none',
-            background: '#F8FAFC',
+            background: 'transparent',
             borderRadius: 20,
             padding: '9px 14px',
             fontSize: 12,

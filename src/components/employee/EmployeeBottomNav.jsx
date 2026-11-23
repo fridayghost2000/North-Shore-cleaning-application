@@ -14,15 +14,17 @@ export default function EmployeeBottomNav() {
   return (
     <div
       style={{
-        height: 64,
-        background: '#FFFFFF',
-        borderTop: '1px solid #E2E8F0',
+        height: 62,
+        background: 'rgba(255, 255, 255, 0.92)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderTop: '1px solid rgba(226, 232, 240, 0.8)',
         display: 'flex',
-        alignItems: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'space-around',
         flexShrink: 0,
         position: 'relative',
         zIndex: 30,
-        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.03)',
       }}
     >
       {tabs.map(({ id, label, icon: Icon, hasPulse }) => {
@@ -34,6 +36,7 @@ export default function EmployeeBottomNav() {
             onClick={() => setEmployeeTab(id)}
             style={{
               flex: 1,
+              height: '100%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -42,38 +45,29 @@ export default function EmployeeBottomNav() {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: isActive ? '#0B4A8F' : '#64748B',
+              color: isActive ? '#0B4A8F' : '#94A3B8',
               position: 'relative',
               padding: 0,
+              transition: 'color 0.15s ease',
+              outline: 'none',
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <div
-              style={{
-                width: 40,
-                height: 28,
-                borderRadius: 14,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: isActive ? '#EEF5FC' : 'transparent',
-                transition: 'all 0.15s ease',
-                position: 'relative',
-              }}
-            >
-              <Icon size={20} strokeWidth={isActive ? 2.4 : 1.9} color={isActive ? '#0B4A8F' : '#64748B'} />
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon size={20} strokeWidth={isActive ? 2.3 : 1.7} />
 
-              {/* Pulsing Green Indicator when timer is active on job tab */}
+              {/* Pulsing indicator when timer is active on job tab */}
               {hasPulse && (
                 <span
                   style={{
                     position: 'absolute',
-                    top: 2,
-                    right: 6,
-                    width: 7,
-                    height: 7,
+                    top: -1,
+                    right: -2,
+                    width: 6,
+                    height: 6,
                     borderRadius: '50%',
                     background: '#10B981',
-                    border: '1.5px solid #FFFFFF',
+                    border: '1px solid #FFFFFF',
                   }}
                 />
               )}
@@ -81,8 +75,8 @@ export default function EmployeeBottomNav() {
 
             <span
               style={{
-                fontSize: 10.5,
-                fontWeight: isActive ? 700 : 500,
+                fontSize: 10,
+                fontWeight: isActive ? 600 : 500,
                 letterSpacing: '-0.1px',
               }}
             >

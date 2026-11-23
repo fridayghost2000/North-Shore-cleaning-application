@@ -8,24 +8,20 @@ import EmployeeAppLayout from './components/employee/EmployeeAppLayout'
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
-  const [currentRole, setCurrentRole] = useState(() => {
-    return localStorage.getItem('north_shore_role') || null
-  })
+  const [currentRole, setCurrentRole] = useState(null) // Reset on page refresh so role is asked again
 
   function handleSelectRole(role) {
-    localStorage.setItem('north_shore_role', role)
     setCurrentRole(role)
   }
 
   function handleLogout() {
-    localStorage.removeItem('north_shore_role')
     setCurrentRole(null)
   }
 
   return (
     <CleansterProvider>
       <PhoneShell>
-        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--app-ambient-bg)' }}>
           {/* Main App Content by Selected Role */}
           {currentRole === 'customer' && (
             <CleansterAppLayout />
