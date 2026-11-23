@@ -3,7 +3,7 @@ import { useCleanster } from '../../context/CleansterContext'
 import {
   Home, AlertTriangle, Rocket,
   CreditCard, Bell, Gift,
-  HelpCircle, LogOut, ChevronRight, MessageCircle, Phone, X, Check
+  HelpCircle, LogOut, ChevronRight, Phone, X, Check
 } from 'lucide-react'
 import { northShoreCompany } from '../../data/cleansterData'
 
@@ -98,7 +98,7 @@ export default function AccountPage() {
       minHeight: '100%',
       boxSizing: 'border-box',
       position: 'relative',
-      paddingBottom: 76,
+      paddingBottom: 16,
     }}>
       {/* ── Top Navigation Bar ── */}
       <div style={{
@@ -288,33 +288,6 @@ export default function AccountPage() {
           </div>
         ))}
       </div>
-
-      {/* ── Floating Live Concierge Chat Button (Screenshot Bottom-Right) ── */}
-      <button
-        onClick={() => setActiveTab('messages')}
-        title="Chat with North Shore Clean Support"
-        style={{
-          position: 'sticky',
-          bottom: 16,
-          marginLeft: 'auto',
-          marginRight: 16,
-          width: 48,
-          height: 48,
-          borderRadius: '50%',
-          background: '#0B4A8F', // North Shore primary blue
-          color: '#FFFFFF',
-          border: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 16px rgba(11, 74, 143, 0.4)',
-          cursor: 'pointer',
-          zIndex: 35,
-          transition: 'transform 0.15s ease',
-        }}
-      >
-        <MessageCircle size={22} fill="#FFFFFF" color="#0B4A8F" />
-      </button>
 
       {/* ── Toast Notification ── */}
       {toastMsg && (
