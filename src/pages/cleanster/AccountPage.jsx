@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useCleanster } from '../../context/CleansterContext'
 import {
-  Home, Package, AlertTriangle, UserCheck, Rocket,
-  CreditCard, Handshake, LayoutGrid, Bell, Gift,
+  Home, AlertTriangle, Rocket,
+  CreditCard, Bell, Gift,
   HelpCircle, LogOut, ChevronRight, MessageCircle, Phone, X, Check
 } from 'lucide-react'
 import { northShoreCompany } from '../../data/cleansterData'
@@ -17,7 +17,7 @@ export default function AccountPage() {
     setTimeout(() => setToastMsg(null), 2500)
   }
 
-  // Exact 12 Menu Items from Cleanster Screenshot
+  // Account Menu Items
   const menuGroups = [
     {
       id: 'properties-group',
@@ -29,13 +29,6 @@ export default function AccountPage() {
           action: () => setActiveModal('properties'),
         },
         {
-          id: 'inventory',
-          label: 'Inventory',
-          icon: Package,
-          badge: 'Coming Soon',
-          action: () => showToast('Inventory tracking is coming soon!'),
-        },
-        {
           id: 'problems',
           label: 'Property Problems',
           icon: AlertTriangle,
@@ -44,14 +37,8 @@ export default function AccountPage() {
       ],
     },
     {
-      id: 'team-group',
+      id: 'cleaners-group',
       items: [
-        {
-          id: 'teammates',
-          label: 'Teammates',
-          icon: UserCheck,
-          action: () => setActiveModal('teammates'),
-        },
         {
           id: 'cleaners',
           label: 'My Cleaners',
@@ -68,19 +55,6 @@ export default function AccountPage() {
           label: 'Billing',
           icon: CreditCard,
           action: () => setActiveModal('billing'),
-        },
-        {
-          id: 'partners',
-          label: 'Partners',
-          icon: Handshake,
-          highlight: true,
-          action: () => setActiveModal('partners'),
-        },
-        {
-          id: 'integrations',
-          label: 'Integrations',
-          icon: LayoutGrid,
-          action: () => setActiveModal('integrations'),
         },
         {
           id: 'notifications',
@@ -329,11 +303,8 @@ export default function AccountPage() {
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0F172A', margin: 0 }}>
                 {activeModal === 'properties' && 'Managed Properties'}
                 {activeModal === 'problems' && 'Report Property Problem'}
-                {activeModal === 'teammates' && 'Team & Property Access'}
                 {activeModal === 'cleaners' && 'Assigned Cleaners'}
                 {activeModal === 'billing' && 'Payment & Billing'}
-                {activeModal === 'partners' && 'North Shore Cleaning Partners'}
-                {activeModal === 'integrations' && 'Platform Integrations'}
                 {activeModal === 'notifications' && 'Notification Settings'}
                 {activeModal === 'help' && 'North Shore Clean Help Center'}
                 {activeModal === 'logout' && 'Confirm Sign Out'}
@@ -524,7 +495,7 @@ export default function AccountPage() {
               </div>
             )}
 
-            {['teammates', 'partners', 'integrations', 'notifications'].includes(activeModal) && (
+            {activeModal === 'notifications' && (
               <div style={{ textAlign: 'center', padding: '16px 0', color: '#64748B', fontSize: 12 }}>
                 <p style={{ margin: '0 0 12px 0' }}>Connected to North Shore Clean Enterprise Suite.</p>
                 <button
