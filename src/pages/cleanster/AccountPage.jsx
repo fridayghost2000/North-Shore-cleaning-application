@@ -12,6 +12,14 @@ export default function AccountPage() {
   const [activeModal, setActiveModal] = useState(null)
   const [toastMsg, setToastMsg] = useState(null)
 
+  // Profile data matching user reference image
+  const [profile, setProfile] = useState({
+    name: 'akash k',
+    email: 'friday.ghost2000@gmail.com',
+    phone: '+91 919990919453',
+  })
+  const [editForm, setEditForm] = useState({ ...profile })
+
   function showToast(msg) {
     setToastMsg(msg)
     setTimeout(() => setToastMsg(null), 2500)
@@ -100,105 +108,95 @@ export default function AccountPage() {
       position: 'relative',
       paddingBottom: 16,
     }}>
-      {/* ── Top Navigation Bar ── */}
+      {/* ── Top Navigation Bar (Matching Image) ── */}
       <div style={{
-        padding: '16px 16px 12px',
+        padding: '14px 16px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: '#FFFFFF',
+        borderBottom: '1px solid #F1F5F9',
       }}>
+        <div style={{ width: 32 }} /> {/* Balance spacer for center title */}
+
         <h1 style={{
-          fontSize: 22,
-          fontWeight: 800,
+          fontSize: 16,
+          fontWeight: 600,
           color: '#0F172A',
           margin: 0,
-          letterSpacing: '-0.4px',
         }}>
           Account
         </h1>
+
+        <button
+          onClick={() => {
+            setEditForm({ ...profile })
+            setActiveModal('edit-profile')
+          }}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#FA2A70', // Cleanster pink Edit button
+            fontSize: 14,
+            fontWeight: 600,
+            cursor: 'pointer',
+            padding: 0,
+          }}
+        >
+          Edit
+        </button>
       </div>
 
-      {/* ── Professional Profile Card ── */}
-      <div style={{ padding: '0 16px 14px' }}>
+      {/* ── Centered Profile Area (Matching Image) ── */}
+      <div style={{
+        background: '#FFFFFF',
+        padding: '28px 16px 24px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        marginBottom: 14,
+        borderBottom: '1px solid #F1F5F9',
+      }}>
+        {/* Solid Blue Circle Avatar */}
         <div style={{
-          background: '#FFFFFF',
-          borderRadius: 16,
-          padding: '14px 16px',
-          border: '1px solid #E2E8F0',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 14,
+          width: 72,
+          height: 72,
+          borderRadius: '50%',
+          background: '#1976D2',
+          marginBottom: 14,
+        }} />
+
+        {/* User Name */}
+        <h2 style={{
+          fontSize: 16,
+          fontWeight: 600,
+          color: '#0F172A',
+          margin: '0 0 5px 0',
+          letterSpacing: '-0.2px',
         }}>
-          <div style={{ position: 'relative', flexShrink: 0 }}>
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
-              alt="David Sterling"
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: '50%',
-                objectFit: 'cover',
-                border: '1.5px solid #EEF2F6',
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: 1,
-              right: 1,
-              width: 11,
-              height: 11,
-              borderRadius: '50%',
-              background: '#10B981',
-              border: '2px solid #FFFFFF',
-            }} />
-          </div>
+          {profile.name}
+        </h2>
 
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
-              <h2 style={{
-                fontSize: 15,
-                fontWeight: 700,
-                color: '#0F172A',
-                margin: 0,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                David Sterling
-              </h2>
-              <span style={{
-                fontSize: 9.5,
-                fontWeight: 700,
-                color: '#0B4A8F',
-                background: '#EEF5FC',
-                border: '1px solid #D0E3F5',
-                padding: '1px 6px',
-                borderRadius: 6,
-                letterSpacing: '0.3px',
-                flexShrink: 0,
-              }}>
-                VIP
-              </span>
-            </div>
-            <p style={{
-              fontSize: 11.5,
-              color: '#64748B',
-              margin: 0,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}>
-              North Shore Cleaning Systems
-            </p>
-            <p style={{
-              fontSize: 10.5,
-              color: '#94A3B8',
-              margin: '2px 0 0 0',
-            }}>
-              Beverly, MA · Client #NS-4820
-            </p>
-          </div>
+        {/* User Email */}
+        <p style={{
+          fontSize: 13,
+          color: '#475569',
+          margin: '0 0 3px 0',
+          fontWeight: 400,
+        }}>
+          {profile.email}
+        </p>
 
-          <ChevronRight size={18} color="#CBD5E1" style={{ flexShrink: 0 }} />
-        </div>
+        {/* User Phone */}
+        <p style={{
+          fontSize: 13,
+          color: '#475569',
+          margin: 0,
+          fontWeight: 400,
+        }}>
+          {profile.phone}
+        </p>
       </div>
 
       {/* ── Clean Inset Grouped Menu List (Apple iOS / Cleanster Style) ── */}
@@ -342,6 +340,7 @@ export default function AccountPage() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0F172A', margin: 0 }}>
+                {activeModal === 'edit-profile' && 'Edit Account Profile'}
                 {activeModal === 'properties' && 'Managed Properties'}
                 {activeModal === 'problems' && 'Report Property Problem'}
                 {activeModal === 'cleaners' && 'Assigned Cleaners'}
@@ -359,6 +358,91 @@ export default function AccountPage() {
             </div>
 
             {/* Modal Body Content */}
+            {activeModal === 'edit-profile' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: 4 }}>
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    value={editForm.name}
+                    onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 12px',
+                      borderRadius: 10,
+                      border: '1px solid #CBD5E1',
+                      fontSize: 13,
+                      boxSizing: 'border-box',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: 4 }}>
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={editForm.email}
+                    onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 12px',
+                      borderRadius: 10,
+                      border: '1px solid #CBD5E1',
+                      fontSize: 13,
+                      boxSizing: 'border-box',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: 4 }}>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    value={editForm.phone}
+                    onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 12px',
+                      borderRadius: 10,
+                      border: '1px solid #CBD5E1',
+                      fontSize: 13,
+                      boxSizing: 'border-box',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={() => {
+                    setProfile({ ...editForm })
+                    setActiveModal(null)
+                    showToast('Profile updated successfully!')
+                  }}
+                  style={{
+                    padding: '12px',
+                    borderRadius: 12,
+                    background: '#0B4A8F',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    fontWeight: 700,
+                    fontSize: 13,
+                    cursor: 'pointer',
+                    marginTop: 4,
+                  }}
+                >
+                  Save Changes
+                </button>
+              </div>
+            )}
+
             {activeModal === 'properties' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <div style={{ padding: 12, borderRadius: 12, border: '1px solid #E2E8F0', background: '#F8FAFC' }}>
