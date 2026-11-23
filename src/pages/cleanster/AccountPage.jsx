@@ -3,10 +3,10 @@ import { useCleanster } from '../../context/CleansterContext'
 import {
   Home, AlertTriangle, Rocket,
   CreditCard, Bell, Gift,
-  HelpCircle, LogOut, ChevronRight, ArrowLeftRight
+  HelpCircle, LogOut, ChevronRight
 } from 'lucide-react'
 
-export default function AccountPage({ onSwitchRole }) {
+export default function AccountPage() {
   const { setAccountModal, accountProfile } = useCleanster()
   const [toastMsg, setToastMsg] = useState(null)
 
@@ -78,12 +78,6 @@ export default function AccountPage({ onSwitchRole }) {
     {
       id: 'auth-group',
       items: [
-        ...(onSwitchRole ? [{
-          id: 'switch-role',
-          label: 'Switch to Employee Portal',
-          icon: ArrowLeftRight,
-          action: onSwitchRole,
-        }] : []),
         {
           id: 'logout',
           label: 'Logout',

@@ -8,7 +8,19 @@ import EmployeeAppLayout from './components/employee/EmployeeAppLayout'
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true)
-  const [currentRole, setCurrentRole] = useState(null) // null = RoleSelector, 'customer', 'employee'
+  const [currentRole, setCurrentRole] = useState(() => {
+    return localStorage.getItem('north_shore_role') || null
+  })
+
+  function handleSelectRole(role) {
+    localStorage.setItem('north_shore_role', role)
+    setCurrentRole(role)
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('north_shore_role')
+    setCurrentRole(null)
+  }
 
   return (
     <CleansterProvider>
@@ -16,16 +28,16 @@ export default function App() {
         <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
           {/* Main App Content by Selected Role */}
           {currentRole === 'customer' && (
-            <CleansterAppLayout onSwitchRole={() => setCurrentRole(null)} />
+            <CleansterAppLayout />
           )}
 
           {currentRole === 'employee' && (
-            <EmployeeAppLayout onSwitchRole={() => setCurrentRole(null)} />
+            <EmployeeAppLayout onLogout={handleLogout} />
           )}
 
-          {/* Role Selection Screen (Shown right after splash) */}
+          {/* Role Selection Screen (Shown right after splash if not yet selected) */}
           {!showSplash && !currentRole && (
-            <RoleSelector onSelectRole={(role) => setCurrentRole(role)} />
+            <RoleSelector onSelectRole={handleSelectRole} />
           )}
 
           {/* Initial Splash Screen */}

@@ -5,21 +5,21 @@ import EmployeeActiveJobPage from '../../pages/employee/EmployeeActiveJobPage'
 import EmployeeMediaPage from '../../pages/employee/EmployeeMediaPage'
 import EmployeeProfilePage from '../../pages/employee/EmployeeProfilePage'
 
-function EmployeeLayoutContent({ onSwitchRole }) {
+function EmployeeLayoutContent({ onLogout }) {
   const { employeeTab } = useEmployee()
 
   function renderPage() {
     switch (employeeTab) {
       case 'schedule':
-        return <EmployeeSchedulePage onSwitchRole={onSwitchRole} />
+        return <EmployeeSchedulePage />
       case 'job':
         return <EmployeeActiveJobPage />
       case 'media':
         return <EmployeeMediaPage />
       case 'profile':
-        return <EmployeeProfilePage onSwitchRole={onSwitchRole} />
+        return <EmployeeProfilePage onLogout={onLogout} />
       default:
-        return <EmployeeSchedulePage onSwitchRole={onSwitchRole} />
+        return <EmployeeSchedulePage />
     }
   }
 
@@ -52,10 +52,10 @@ function EmployeeLayoutContent({ onSwitchRole }) {
   )
 }
 
-export default function EmployeeAppLayout({ onSwitchRole }) {
+export default function EmployeeAppLayout({ onLogout }) {
   return (
     <EmployeeProvider>
-      <EmployeeLayoutContent onSwitchRole={onSwitchRole} />
+      <EmployeeLayoutContent onLogout={onLogout} />
     </EmployeeProvider>
   )
 }

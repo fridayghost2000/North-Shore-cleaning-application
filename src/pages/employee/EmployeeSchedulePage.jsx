@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useEmployee } from '../../context/EmployeeContext'
-import { Clock, MapPin, CheckCircle2, ChevronRight, Navigation, Sparkles, AlertCircle, ArrowLeftRight } from 'lucide-react'
+import { Clock, MapPin, CheckCircle2, ChevronRight, Navigation, Sparkles, AlertCircle } from 'lucide-react'
 
 const weekDays = [
   { dayName: 'Mon', date: '24', isToday: true },
@@ -12,7 +12,7 @@ const weekDays = [
   { dayName: 'Sun', date: '30', isToday: false },
 ]
 
-export default function EmployeeSchedulePage({ onSwitchRole }) {
+export default function EmployeeSchedulePage() {
   const { jobs, profile, setActiveJobId, setEmployeeTab } = useEmployee()
   const [selectedDate, setSelectedDate] = useState('24')
 
@@ -63,30 +63,6 @@ export default function EmployeeSchedulePage({ onSwitchRole }) {
             </p>
           </div>
         </div>
-
-        {/* Switch Role Button */}
-        {onSwitchRole && (
-          <button
-            onClick={onSwitchRole}
-            title="Switch Portal"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 5,
-              padding: '6px 10px',
-              borderRadius: 14,
-              background: '#EEF5FC',
-              border: '1px solid #D0E3F5',
-              color: '#0B4A8F',
-              fontSize: 11,
-              fontWeight: 600,
-              cursor: 'pointer',
-            }}
-          >
-            <ArrowLeftRight size={12} />
-            <span>Switch Portal</span>
-          </button>
-        )}
       </div>
 
       {/* Week Calendar Strip */}

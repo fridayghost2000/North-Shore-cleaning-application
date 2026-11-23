@@ -169,13 +169,6 @@ export default function RoleSelector({ onSelectRole }) {
           )
         })}
       </div>
-
-      {/* Bottom Switch Note */}
-      <div style={{ textAlign: 'center', paddingBottom: 8 }}>
-        <p style={{ fontSize: 11, color: '#94A3B8', margin: 0 }}>
-          You can switch portals anytime from profile settings.
-        </p>
-      </div>
     </div>
   )
 }

@@ -11,7 +11,7 @@ import ReviewModal from './ReviewModal'
 import NewBookingModal from './NewBookingModal'
 import AccountModal from './AccountModal'
 
-export default function CleansterAppLayout({ onSwitchRole }) {
+export default function CleansterAppLayout() {
   const { activeTab, setActiveTab } = useCleanster()
 
   function renderPage() {
@@ -23,7 +23,7 @@ export default function CleansterAppLayout({ onSwitchRole }) {
       case 'checklist':
         return <ChecklistPage />
       case 'account':
-        return <AccountPage onSwitchRole={onSwitchRole} />
+        return <AccountPage />
       default:
         return <BookingsPage />
     }

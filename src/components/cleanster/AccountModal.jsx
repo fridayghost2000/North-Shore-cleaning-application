@@ -284,7 +284,11 @@ export default function AccountModal() {
                 Cancel
               </button>
               <button
-                onClick={handleClose}
+                onClick={() => {
+                  handleClose()
+                  localStorage.removeItem('north_shore_role')
+                  window.location.reload()
+                }}
                 style={{
                   flex: 1,
                   padding: 12,

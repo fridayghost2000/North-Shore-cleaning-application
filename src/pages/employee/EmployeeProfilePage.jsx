@@ -171,46 +171,6 @@ export default function EmployeeProfilePage({ onSwitchRole }) {
         overflow: 'hidden',
         marginBottom: 16,
       }}>
-        {/* Switch to Customer Portal */}
-        {onSwitchRole && (
-          <div
-            onClick={onSwitchRole}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '13px 14px',
-              borderBottom: '1px solid #F1F5F9',
-              cursor: 'pointer',
-              background: '#FFFFFF',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                background: '#EEF5FC',
-                color: '#0B4A8F',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <ArrowLeftRight size={17} />
-              </div>
-              <div>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A', display: 'block' }}>
-                  Switch to Customer Portal
-                </span>
-                <span style={{ fontSize: 10.5, color: '#64748B' }}>
-                  Book services or test customer view
-                </span>
-              </div>
-            </div>
-            <ChevronRight size={16} color="#CBD5E1" />
-          </div>
-        )}
-
         {/* Dispatch Helpline */}
         <a
           href={`tel:${northShoreCompany.phone}`}
@@ -250,7 +210,7 @@ export default function EmployeeProfilePage({ onSwitchRole }) {
 
         {/* Sign Out */}
         <div
-          onClick={onSwitchRole}
+          onClick={onLogout}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -273,7 +233,7 @@ export default function EmployeeProfilePage({ onSwitchRole }) {
               <LogOut size={17} />
             </div>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#DC2626' }}>
-              Sign Out / Change Role
+              Sign Out
             </span>
           </div>
         </div>
